@@ -103,11 +103,14 @@ height = 14.0
 script = ExtResource("1_7dd06")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=365077027]
-offset = Vector2(0, -20)
-zoom = Vector2(4, 4)
+offset = Vector2(10, -20)
+zoom = Vector2(2, 2)
 
-[node name="PlayerAnimation" type="Node2D" parent="." unique_id=1592837999]
+[node name="PlayerAnimation" type="Node2D" parent="." unique_id=1592837999 node_paths=PackedStringArray("player_control", "animation_player", "sprite")]
 script = ExtResource("2_38rej")
+player_control = NodePath("..")
+animation_player = NodePath("AnimationPlayer")
+sprite = NodePath("Sprite2D")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerAnimation" unique_id=2114183147]
 root_node = NodePath("../..")
