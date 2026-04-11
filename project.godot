@@ -15,13 +15,20 @@ run/main_scene="uid://cj47af1ubgpu1"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PhantomCameraManager="*uid://duq6jhf6unyis"
+
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
 [input]
 

@@ -295,5 +295,3 @@ tile_set = SubResource("TileSet_8uggh")
 
 [node name="Player" parent="." unique_id=278113804 instance=ExtResource("2_t0x5v")]
 position = Vector2(0, 2)
-speed = 5.5
-jump_power = 9.0
