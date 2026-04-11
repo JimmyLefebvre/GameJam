@@ -4,41 +4,41 @@ class_name player_controller
 @export var speed := 5.5
 @export var jump_power := 9.0
 
-var speed_multiplier := 30.0  # multiplicateur de vitesse horizontale
-var jump_multiplier := -30.0  # négatif car l’axe Y va vers le bas dans Godot
+var speed_multiplier :float= 30.0  # multiplicateur de vitesse horizontale
+var jump_multiplier :float= -30.0  # négatif car l’axe Y va vers le bas dans Godot
 
 # Gravité
-var gravity := 800.0
-var fast_fall_gravity := 1000.0  # gravité augmentée quand on appuie vers le bas
-var wall_gravity := 100.0        # gravité réduite lors du slide contre un mur
+var gravity :float= 800.0
+var fast_fall_gravity :float= 1000.0  # gravité augmentée quand on appuie vers le bas
+var wall_gravity :float= 100.0        # gravité réduite lors du slide contre un mur
 
 # Limites vitesse verticale (évite chute infinie)
-var max_fall_speed := 400.0
-var max_fast_fall_speed := 600.0
+var max_fall_speed :float= 400.0
+var max_fast_fall_speed :float= 600.0
 
 # Apex (sommet du saut → sensation de flottement)
-var apex_threshold := 20.0       # zone proche du sommet du saut
-var apex_gravity_scale := 0.5    # gravité réduite à l’apex
+var apex_threshold :float= 20.0       # zone proche du sommet du saut
+var apex_gravity_scale :float= 0.5    # gravité réduite à l’apex
 
 # Mouvement horizontal
-var acceleration := 1800.0       # vitesse d’accélération vers la vitesse cible
+var acceleration :float= 1800.0       # vitesse d’accélération vers la vitesse cible
 
 # Wall jump
-var wall_jump_x_force := 1.0     # force horizontale du saut mural
-var wall_jump_lock_duration := 0.2  # temps pendant lequel le joueur ne peut pas contrôler le mouvement après un wall jump
-var wall_jump_lock_timer := 0.0
-var is_wall_jumping := false     # indique si on est en train de faire un wall jump
+var wall_jump_x_force :float= 1.0     # force horizontale du saut mural
+var wall_jump_lock_duration :float= 0.2  # temps pendant lequel le joueur ne peut pas contrôler le mouvement après un wall jump
+var wall_jump_lock_timer :float= 0.0
+var is_wall_jumping :bool= false     # indique si on est en train de faire un wall jump
 
-var direction := 0.0             # input horizontal (-1 à 1)
-var wall_side := 0.0             # direction du mur (normal du mur)
+var direction :float= 0.0             # input horizontal (-1 à 1)
+var wall_side :float= 0.0             # direction du mur (normal du mur)
 
 # Timers
 var input_buffer : Timer         # permet d'enregistrer un saut légèrement en avance
 var coyote_timer : Timer         # permet de sauter juste après avoir quitté le sol
-var coyote_jump_available := true
+var coyote_jump_available :bool= true
 
-const INPUT_BUFFER_PATIENCE = 0.1
-const COYOTE_TIME = 0.1
+const INPUT_BUFFER_PATIENCE :float= 0.1
+const COYOTE_TIME :float= 0.1
 #endregion
 func _ready() -> void:
 	# Création du timer de buffer d'input
