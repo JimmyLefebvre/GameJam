@@ -105,6 +105,8 @@ script = ExtResource("1_7dd06")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=365077027]
 offset = Vector2(10, -20)
 zoom = Vector2(2, 2)
+drag_right_margin = 0.6
+drag_bottom_margin = 0.0
 
 [node name="PlayerAnimation" type="Node2D" parent="." unique_id=1592837999 node_paths=PackedStringArray("player_control", "animation_player", "sprite")]
 script = ExtResource("2_38rej")
