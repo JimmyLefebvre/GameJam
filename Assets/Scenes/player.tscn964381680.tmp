@@ -3,9 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://cqpkv26r0rx3u" path="res://Assets/Sprites/player.png" id="1_6cd4h"]
 [ext_resource type="Script" uid="uid://ctjnt8wiwl5es" path="res://Assets/Scripts/player_controller.gd" id="1_7dd06"]
 [ext_resource type="Script" uid="uid://c1uacfga5xfm2" path="res://Assets/Scripts/player_animation.gd" id="2_38rej"]
-[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_w3t24"]
-[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_c3tg1"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_lerqx"]
 
 [sub_resource type="Animation" id="Animation_38rej"]
 length = 0.001
@@ -102,25 +99,14 @@ _data = {
 radius = 4.0
 height = 14.0
 
-[sub_resource type="Resource" id="Resource_jp3cw"]
-script = ExtResource("6_lerqx")
-duration = 2.0
-
 [node name="Player" type="CharacterBody2D" unique_id=278113804]
 script = ExtResource("1_7dd06")
-speed = 4.8
-jump_power = 8.0
+speed = null
+jump_power = null
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=365077027]
-top_level = true
-position = Vector2(0, -5)
+offset = Vector2(10, -20)
 zoom = Vector2(2, 2)
-
-[node name="PhantomCameraHost" type="Node" parent="Camera2D" unique_id=1953129260]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("2_w3t24")
-metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="PlayerAnimation" type="Node2D" parent="." unique_id=1592837999 node_paths=PackedStringArray("player_control", "animation_player", "sprite")]
 script = ExtResource("2_38rej")
@@ -145,23 +131,6 @@ visible = false
 position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_7dd06")
 
-[node name="PhantomCamera2D" type="Node2D" parent="." unique_id=423988505 node_paths=PackedStringArray("follow_target")]
-top_level = true
-position = Vector2(0, -5)
-script = ExtResource("5_c3tg1")
-follow_mode = 5
-follow_target = NodePath("..")
-zoom = Vector2(2, 2)
-tween_resource = SubResource("Resource_jp3cw")
-tween_on_load = false
-follow_offset = Vector2(0, -5)
-follow_damping = true
-follow_damping_value = Vector2(0.05, 0.05)
-lookahead = true
-lookahead_time = Vector2(0.05, 0.05)
-lookahead_acceleration = 0.05
-lookahead_deceleration = 0.05
-lookahead_max = true
-dead_zone_width = 0.05
-dead_zone_height = 0.3
-metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+[node name="CoyoteTime" type="Timer" parent="." unique_id=409631510]
+wait_time = 0.1
+one_shot = true
