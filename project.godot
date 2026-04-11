@@ -19,10 +19,16 @@ config/icon="res://icon.svg"
 
 PhantomCameraManager="*uid://duq6jhf6unyis"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/inferred_declaration=1
+
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
+window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
