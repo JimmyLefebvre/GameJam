@@ -25,10 +25,12 @@ class_name PlayerController
 @export var wall_grip_required: float = 0.08
 
 @export_group("Dash")
-@export var dash_speed: float = 600.0
-@export var dash_duration: float = 0.18
-@export var dash_gravity_scale: float = 0.15
-@export var dash_cooldown: float = 0.3
+@export var dash_speed: float = 350.0
+@export var dash_duration: float = 0.3
+@export var dash_gravity_scale: float = 0.05
+@export var dash_cooldown: float = 0.6
+@export var dash_momentum_duration: float = 0.05
+@export var dash_end_momentum: float = 0.6  # remplace la constante DASH_END_MOMENTUM
 #endregion
 
 #region Constantes internes
@@ -57,6 +59,7 @@ var _dash_cooldown_timer: float = 0.0
 var _dash_direction: Vector2 = Vector2.ZERO
 var _dash_available: bool = true
 var _is_dashing: bool = false
+var _dash_momentum_timer: float = 0.0
 
 # Coyote / buffer
 var _coyote_jump_available: bool = true
@@ -71,7 +74,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_direction = Input.get_axis("move_left", "move_right")
-	_vertical_input = Input.get_axis("move_up", "move_down")
+	_vertical_input = Input.get_axis("move_up", "fast_fall")
 
 	if _dash_cooldown_timer > 0.0:
 		_dash_cooldown_timer -= delta
@@ -126,6 +129,9 @@ func _handle_gravity(delta: float) -> void:
 	if is_on_floor():
 		return
 
+	if _dash_momentum_timer > 0.0:
+		return  # préserve velocity.y du dash
+
 	velocity.y += _calculate_gravity() * delta
 	var fall_cap := max_fast_fall_speed if Input.is_action_pressed("fast_fall") else max_fall_speed
 	velocity.y = min(velocity.y, fall_cap)
@@ -136,6 +142,10 @@ func _handle_horizontal(delta: float) -> void:
 		if _wall_jump_lock_timer <= 0.0:
 			_is_wall_jumping = false
 		return
+
+	if _dash_momentum_timer > 0.0:
+		_dash_momentum_timer -= delta
+		return  # préserve velocity.x du dash
 
 	var target_x := _direction * speed * SPEED_MULTIPLIER
 	velocity.x = move_toward(velocity.x, target_x, acceleration * delta)
@@ -163,7 +173,11 @@ func _start_dash() -> void:
 	var raw_dir := Vector2(_direction, _vertical_input)
 	if raw_dir == Vector2.ZERO:
 		raw_dir = Vector2(sign(_get_facing_dir()), 0.0)
-	_dash_direction = raw_dir.normalized()
+	
+	var snappe := Vector2(sign(raw_dir.x), sign(raw_dir.y))
+	# Cardinal → pleine vitesse sur l'axe, diagonal → normalisé pour garder la même magnitude
+	_dash_direction = snappe.normalized() if snappe.x != 0.0 and snappe.y != 0.0 else snappe
+	
 	_dash_timer = dash_duration
 	_is_dashing = true
 	_dash_available = false
@@ -172,7 +186,8 @@ func _start_dash() -> void:
 func _end_dash() -> void:
 	_is_dashing = false
 	_dash_cooldown_timer = dash_cooldown
-	velocity = _dash_direction * dash_speed * DASH_END_MOMENTUM
+	_dash_momentum_timer = dash_momentum_duration
+	velocity = _dash_direction * dash_speed * dash_end_momentum
 
 #endregion
 

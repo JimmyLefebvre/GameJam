@@ -4,12 +4,12 @@ class_name DashIndicator
 @export var player: PlayerController
 
 # Apparence
-@export var radius: float = 12.0          # rayon de l'arc
-@export var thickness: float = 3.0        # épaisseur du trait
-@export var offset: Vector2 = Vector2(0, -24)  # position relative au joueur
+@export var radius: float = 1.75        # rayon de l'arc
+@export var thickness: float = 0.4      # épaisseur du trait
+@export var offset: Vector2 = Vector2(9, -12.5)  # position relative au joueur
 
 @export var color_ready: Color = Color(0.4, 0.8, 1.0)    # bleu quand rechargé
-@export var color_charging: Color = Color(0.58, 0.0, 0.09, 0.5) # gris pendant le cooldown
+@export var color_charging: Color = Color(0.58, 0.0, 0.09) # gris pendant le cooldown
 
 # Interne
 var _fill: float = 1.0  # 0.0 → 1.0

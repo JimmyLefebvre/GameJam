@@ -114,7 +114,7 @@ script = ExtResource("1_7dd06")
 physics_interpolation_mode = 1
 top_level = true
 position = Vector2(0, -5)
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D" unique_id=1953129260]
 process_priority = 300
@@ -151,7 +151,7 @@ position = Vector2(0, -5)
 script = ExtResource("5_c3tg1")
 follow_mode = 5
 follow_target = NodePath("..")
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 tween_resource = SubResource("Resource_jp3cw")
 tween_on_load = false
 follow_offset = Vector2(0, -5)
@@ -163,13 +163,9 @@ lookahead_acceleration = 0.05
 lookahead_deceleration = 0.05
 lookahead_max = true
 dead_zone_width = 0.05
-dead_zone_height = 0.3
+dead_zone_height = 0.35
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="DashIndicator" type="Node2D" parent="." unique_id=1563987583 node_paths=PackedStringArray("player")]
 script = ExtResource("7_c3tg1")
 player = NodePath("..")
-radius = 1.75
-thickness = 0.35
-offset = Vector2(9, -12.5)
-color_charging = Color(0.5803922, 0, 0.09803922, 1)
