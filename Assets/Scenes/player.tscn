@@ -108,6 +108,7 @@ duration = 2.0
 
 [node name="Player" type="CharacterBody2D" unique_id=278113804]
 script = ExtResource("1_7dd06")
+speed = 4.5
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=365077027]
 physics_interpolation_mode = 1
