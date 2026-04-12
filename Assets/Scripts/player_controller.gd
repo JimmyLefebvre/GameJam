@@ -1,8 +1,8 @@
 extends CharacterBody2D
 class_name player_controller
 #region Variables
-@export var speed := 5.5
-@export var jump_power := 9.0
+@export var speed := 4.8
+@export var jump_power := 8.0
 
 var speed_multiplier :float= 30.0  # multiplicateur de vitesse horizontale
 var jump_multiplier :float= -30.0  # négatif car l’axe Y va vers le bas dans Godot
