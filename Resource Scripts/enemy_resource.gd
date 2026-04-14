@@ -1,5 +1,5 @@
 extends Resource
-class_name enemy_type
+class_name EnemyType
 
 @export var name: String
 @export var type: types

@@ -38,7 +38,6 @@ const SPEED_MULTIPLIER: float = 30.0
 const JUMP_MULTIPLIER: float = -30.0
 const INPUT_BUFFER_PATIENCE: float = 0.1
 const COYOTE_TIME: float = 0.1
-const DASH_END_MOMENTUM: float = 0.35
 #endregion
 
 #region État interne

@@ -1,5 +1,6 @@
 extends CharacterBody2D
-@export var enemy_stats: Resource
+class_name EnemyBase
+@export var enemy_stats: EnemyType
 var start_position: Vector2
 var moving_right: bool
 var _is_visible: bool = false
@@ -11,7 +12,7 @@ func _ready():
 	$VisibleOnScreenNotifier2D.screen_entered.connect(_on_screen_entered)
 	$VisibleOnScreenNotifier2D.screen_exited.connect(_on_screen_exited)
 
-func _process(delta):
+func _physics_process(delta):
 	if not _is_visible:
 		return
 	move_enemy(delta)
