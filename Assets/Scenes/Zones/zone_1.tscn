@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://pstw30vldicr" path="res://Assets/Sprites/tiles_1.png" id="1_m2pv6"]
 [ext_resource type="PackedScene" uid="uid://qyjet60vrdr8" path="res://Assets/Scenes/player.tscn" id="2_t0x5v"]
+[ext_resource type="PackedScene" uid="uid://ckhac3he73cma" path="res://Assets/Scenes/background.tscn" id="3_8uggh"]
+[ext_resource type="PackedScene" uid="uid://2usfmy0bs516" path="res://Assets/Scenes/ParallaxForeground.tscn" id="4_6giwr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t0x5v"]
 texture = ExtResource("1_m2pv6")
@@ -286,6 +288,9 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_t0x5v")
 
 [node name="Zone1" type="Node2D" unique_id=2146826052]
+
+[node name="Background" parent="." unique_id=1222665295 instance=ExtResource("3_8uggh")]
+position = Vector2(0, 0)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2067283335]
 texture_filter = 1

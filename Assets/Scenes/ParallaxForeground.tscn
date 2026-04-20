@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://2usfmy0bs516"]
+
+[ext_resource type="Texture2D" uid="uid://1qg3fdl68smk" path="res://Assets/Sprites/Foreground.png" id="1_qnrog"]
+
+[node name="Node2D" type="Node2D" unique_id=908486142]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1836910620]
+scroll_scale = Vector2(1.001, 1.001)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1052655090]
+position = Vector2(0, -67)
+texture = ExtResource("1_qnrog")
