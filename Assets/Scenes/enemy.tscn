@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bytqpv2l4jvbw"]
 
+[ext_resource type="Script" uid="uid://drrew6fo7busl" path="res://Assets/Scripts/enemy_base.gd" id="1_4ye20"]
 [ext_resource type="Texture2D" uid="uid://bvfd21v14a0jh" path="res://icon.svg" id="2_2g0jp"]
 [ext_resource type="Script" uid="uid://cftmbn0yju3er" path="res://Assets/Scenes/hitbox.gd" id="2_e2b7p"]
 [ext_resource type="Script" uid="uid://duodyg2m8jaf6" path="res://Assets/Scenes/hurtbox.gd" id="3_2g0jp"]
@@ -11,12 +12,12 @@ size = Vector2(12.000001, 12.000001)
 size = Vector2(12, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2g0jp"]
-size = Vector2(14, 14)
+size = Vector2(16, 16)
 
-[node name="Enemy" type="CharacterBody2D" unique_id=51726171]
+[node name="Enemy" type="CharacterBody2D" unique_id=51726171 node_paths=PackedStringArray("hitbox")]
 texture_filter = 1
-collision_layer = 2
-collision_mask = 21
+script = ExtResource("1_4ye20")
+hitbox = NodePath("HitBox")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=2086001255]
 position = Vector2(2.842171e-14, 3.3881318e-21)
@@ -44,6 +45,7 @@ rect = Rect2(-6, -6, 12, 12)
 [node name="HitBox" type="Area2D" parent="." unique_id=1466471373]
 collision_layer = 8
 script = ExtResource("2_e2b7p")
+damage = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=380347533]
 shape = SubResource("RectangleShape2D_2g0jp")

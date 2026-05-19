@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name EnemyBase
 @export var enemy_stats: EnemyType
+@export var hitbox: HitBox
+var health: float
+var damage: float
 var start_position: Vector2
 var moving_right: bool
 var _is_visible: bool = false
@@ -8,6 +11,8 @@ var _is_visible: bool = false
 
 func _ready():
 	enemy_stats = enemy_stats.duplicate()
+	health = enemy_stats.health
+	damage = enemy_stats.damage
 	set_modulate(enemy_stats.find_appearance())
 	find_starting_direction()
 	start_position = position

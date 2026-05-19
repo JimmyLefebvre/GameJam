@@ -111,7 +111,7 @@ script = ExtResource("6_lerqx")
 duration = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jp3cw"]
-size = Vector2(14, 14)
+size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rsrmw"]
 size = Vector2(20, 14)
@@ -126,11 +126,11 @@ size = Vector2(14, 20)
 size = Vector2(14, 20)
 
 [node name="Player" type="CharacterBody2D" unique_id=278113804]
-collision_mask = 17
+collision_mask = 26
 script = ExtResource("1_7dd06")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=365077027]
-physics_interpolation_mode = 2
+physics_interpolation_mode = 1
 top_level = true
 position = Vector2(0, -5)
 zoom = Vector2(1.5, 1.5)
@@ -209,6 +209,7 @@ hitbox_down = NodePath("HitBoxDown")
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("10_vy5gb")
+damage = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackManager/HitBoxRight" unique_id=85809265]
 position = Vector2(10, -7)
@@ -218,6 +219,7 @@ shape = SubResource("RectangleShape2D_rsrmw")
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("10_vy5gb")
+damage = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackManager/HitBoxLeft" unique_id=1846000233]
 position = Vector2(-10, -7)
@@ -227,6 +229,7 @@ shape = SubResource("RectangleShape2D_o8kuu")
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("10_vy5gb")
+damage = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackManager/HitBoxUp" unique_id=1016269090]
 position = Vector2(0, -17)
@@ -236,6 +239,7 @@ shape = SubResource("RectangleShape2D_xv74q")
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("10_vy5gb")
+damage = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackManager/HitBoxDown" unique_id=1463102906]
 position = Vector2(0, 3)
