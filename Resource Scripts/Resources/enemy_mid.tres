@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="enemy_type" format=3 uid="uid://byxnlldxiybry"]
+
+[ext_resource type="Script" uid="uid://bkwgjkvb35wkk" path="res://Resource Scripts/enemy_resource.gd" id="1_p4e4v"]
+[ext_resource type="Texture2D" uid="uid://bvfd21v14a0jh" path="res://icon.svg" id="2_w50sf"]
+
+[resource]
+script = ExtResource("1_p4e4v")
+name = "enemy_mid"
+type = 1
+texture = ExtResource("2_w50sf")
+speed = 50.0
+movement_range = 20.0
+damage = 100.0
+health = 100.0
+metadata/_custom_type_script = "uid://bkwgjkvb35wkk"

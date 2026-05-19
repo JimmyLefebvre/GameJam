@@ -2,6 +2,14 @@ extends CharacterBody2D
 class_name PlayerController
 
 #region Exports
+@export_group("Vie")
+@export var max_health: float = 3.0
+
+var health: float = max_health
+
+signal damaged(amount: float)
+signal died
+
 @export_group("Mouvement horizontal")
 @export var speed: float = 4.8
 @export var acceleration: float = 1800.0
@@ -38,7 +46,6 @@ const SPEED_MULTIPLIER: float = 30.0
 const JUMP_MULTIPLIER: float = -30.0
 const INPUT_BUFFER_PATIENCE: float = 0.1
 const COYOTE_TIME: float = 0.1
-const DASH_END_MOMENTUM: float = 0.35
 #endregion
 
 #region État interne
@@ -71,6 +78,7 @@ func _ready() -> void:
 	_input_buffer = _make_timer(INPUT_BUFFER_PATIENCE)
 	_coyote_timer = _make_timer(COYOTE_TIME)
 	_coyote_timer.timeout.connect(_on_coyote_timeout)
+	$HurtBox.damaged.connect(_on_damaged)
 
 func _physics_process(delta: float) -> void:
 	_direction = Input.get_axis("move_left", "move_right")
@@ -277,5 +285,11 @@ func get_dash_fill() -> float:
 
 func _on_coyote_timeout() -> void:
 	_coyote_jump_available = false
+	
+func _on_damaged(amount: float) -> void:
+	health -= amount
+	damaged.emit(amount)
+	if health <= 0.0:
+		died.emit()
 
 #endregion
