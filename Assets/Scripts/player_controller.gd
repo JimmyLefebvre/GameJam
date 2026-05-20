@@ -300,16 +300,10 @@ func _on_damaged(amount: float) -> void:
 		died.emit()
 		
 func _on_died() -> void:
-	print("Le personnage est mort")
-
-	# Désactiver collisions
-	$CollisionShape2D.disabled = true
-
-	# Empêcher le mouvement
+	is_dead = true
 	set_physics_process(false)
-
-	# Supprimer après un délai
-	await get_tree().create_timer(1.5).timeout
-	queue_free()
+	set_process(false)
+	$CollisionShape2D.set_deferred("disabled", true)
+	SceneManager.fade_and_reload()
 
 #endregion

@@ -1,9 +1,8 @@
 [gd_scene format=4 uid="uid://cj47af1ubgpu1"]
 
 [ext_resource type="PackedScene" uid="uid://qyjet60vrdr8" path="res://Assets/Scenes/player.tscn" id="2_t0x5v"]
-[ext_resource type="PackedScene" uid="uid://bytqpv2l4jvbw" path="res://Assets/Scenes/enemy.tscn" id="3_8uggh"]
+[ext_resource type="PackedScene" path="res://Assets/Scenes/enemy.tscn" id="3_8uggh"]
 [ext_resource type="Resource" uid="uid://c3udoejat2kx0" path="res://Resource Scripts/Resources/enemy_slow.tres" id="4_6giwr"]
-[ext_resource type="Script" uid="uid://drrew6fo7busl" path="res://Assets/Scripts/enemy_base.gd" id="4_rexef"]
 [ext_resource type="Resource" uid="uid://byxnlldxiybry" path="res://Resource Scripts/Resources/enemy_mid.tres" id="5_pw3mj"]
 [ext_resource type="Resource" uid="uid://7qinod0wjmno" path="res://Resource Scripts/Resources/enemy_fast.tres" id="6_rexef"]
 [ext_resource type="Texture2D" uid="uid://covqncj77mx2c" path="res://Assets/Sprites/pixil-frame-0.png" id="9_cmj6v"]
@@ -341,20 +340,36 @@ collision_enabled = false
 [node name="Player" parent="." unique_id=278113804 instance=ExtResource("2_t0x5v")]
 position = Vector2(-422, -48)
 collision_mask = 1
+max_health = null
+speed = null
+acceleration = null
+jump_power = null
+jump_cut_multiplier = null
+gravity = null
+fast_fall_gravity = null
+wall_gravity = null
+apex_threshold = null
+apex_gravity_scale = null
+max_fall_speed = null
+max_fast_fall_speed = null
+wall_jump_x_force = null
+wall_jump_lock_duration = null
+wall_grip_required = null
+dash_speed = null
 dash_duration = 0.075
+dash_gravity_scale = null
 dash_cooldown = 0.5
+dash_momentum_duration = null
+dash_end_momentum = null
 
 [node name="Enemy_slow" parent="." unique_id=51726171 instance=ExtResource("3_8uggh")]
 position = Vector2(-253, 9)
-script = ExtResource("4_rexef")
 enemy_stats = ExtResource("4_6giwr")
 
 [node name="Enemy_mid" parent="." unique_id=1838781703 instance=ExtResource("3_8uggh")]
 position = Vector2(-242, 70)
-script = ExtResource("4_rexef")
 enemy_stats = ExtResource("5_pw3mj")
 
 [node name="Enemy_fast" parent="." unique_id=1601669146 instance=ExtResource("3_8uggh")]
-position = Vector2(-46, -10)
-script = ExtResource("4_rexef")
+position = Vector2(-556, -206)
 enemy_stats = ExtResource("6_rexef")
