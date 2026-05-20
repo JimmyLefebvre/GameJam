@@ -3,9 +3,9 @@ class_name PlayerController
 
 #region Exports
 @export_group("Vie")
-@export var max_health: float = 3.0
+@export var max_health: float
 
-var health: float = max_health
+var health: float = 0.0
 
 signal damaged(amount: float)
 signal died
@@ -76,6 +76,8 @@ var _coyote_timer: Timer
 #endregion
 
 func _ready() -> void:
+	health = max_health
+	add_to_group("player")
 	_input_buffer = _make_timer(INPUT_BUFFER_PATIENCE)
 	_coyote_timer = _make_timer(COYOTE_TIME)
 	_coyote_timer.timeout.connect(_on_coyote_timeout)

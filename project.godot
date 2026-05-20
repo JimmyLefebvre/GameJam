@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 PhantomCameraManager="*uid://duq6jhf6unyis"
 SceneManager="*uid://b6ogo20lpg40y"
+Hud="*uid://dhx0vg76612wx"
 
 [display]
 

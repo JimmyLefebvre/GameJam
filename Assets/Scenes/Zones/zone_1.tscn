@@ -340,27 +340,9 @@ collision_enabled = false
 [node name="Player" parent="." unique_id=278113804 instance=ExtResource("2_t0x5v")]
 position = Vector2(-422, -48)
 collision_mask = 1
-max_health = null
-speed = null
-acceleration = null
-jump_power = null
-jump_cut_multiplier = null
-gravity = null
-fast_fall_gravity = null
-wall_gravity = null
-apex_threshold = null
-apex_gravity_scale = null
-max_fall_speed = null
-max_fast_fall_speed = null
-wall_jump_x_force = null
-wall_jump_lock_duration = null
-wall_grip_required = null
-dash_speed = null
+max_health = 100.0
 dash_duration = 0.075
-dash_gravity_scale = null
 dash_cooldown = 0.5
-dash_momentum_duration = null
-dash_end_momentum = null
 
 [node name="Enemy_slow" parent="." unique_id=51726171 instance=ExtResource("3_8uggh")]
 position = Vector2(-253, 9)
