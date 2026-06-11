@@ -2,6 +2,14 @@ extends CharacterBody2D
 class_name PlayerController
 
 #region Exports
+@export_group("Vie")
+@export var max_health: float
+
+var health: float = 0.0
+
+signal damaged(amount: float)
+signal died
+
 @export_group("Mouvement horizontal")
 @export var speed: float = 4.8
 @export var acceleration: float = 1800.0
@@ -45,6 +53,7 @@ var _direction: float = 0.0
 var _vertical_input: float = 0.0
 var _wall_side: float = 0.0
 var _last_facing_dir: float = 1.0
+var is_dead := false
 
 # Wall jump
 var _wall_grip_timer: float = 0.0
@@ -67,9 +76,13 @@ var _coyote_timer: Timer
 #endregion
 
 func _ready() -> void:
+	health = max_health
+	add_to_group("player")
 	_input_buffer = _make_timer(INPUT_BUFFER_PATIENCE)
 	_coyote_timer = _make_timer(COYOTE_TIME)
 	_coyote_timer.timeout.connect(_on_coyote_timeout)
+	$HurtBox.damaged.connect(_on_damaged)
+	died.connect(_on_died)
 
 func _physics_process(delta: float) -> void:
 	_direction = Input.get_axis("move_left", "move_right")
@@ -276,5 +289,23 @@ func get_dash_fill() -> float:
 
 func _on_coyote_timeout() -> void:
 	_coyote_jump_available = false
+	
+func _on_damaged(amount: float) -> void:
+	if is_dead:
+		return
+
+	health -= amount
+	damaged.emit(amount)
+
+	if health <= 0.0:
+		is_dead = true
+		died.emit()
+		
+func _on_died() -> void:
+	is_dead = true
+	set_physics_process(false)
+	set_process(false)
+	$CollisionShape2D.set_deferred("disabled", true)
+	SceneManager.fade_and_reload()
 
 #endregion
