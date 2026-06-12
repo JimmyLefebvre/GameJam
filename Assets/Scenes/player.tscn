@@ -7,9 +7,9 @@
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_c3tg1"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_lerqx"]
 [ext_resource type="Script" uid="uid://dq0607g7ju6w6" path="res://Assets/Scripts/dash_indicator.gd" id="7_c3tg1"]
-[ext_resource type="Script" uid="uid://duodyg2m8jaf6" path="res://Assets/Scenes/hurtbox.gd" id="8_lerqx"]
-[ext_resource type="Script" uid="uid://dfknei7r0sixc" path="res://Assets/Scenes/attack_manager.gd" id="9_ecf78"]
-[ext_resource type="Script" uid="uid://cftmbn0yju3er" path="res://Assets/Scenes/hitbox.gd" id="10_vy5gb"]
+[ext_resource type="Script" uid="uid://duodyg2m8jaf6" path="res://Assets/Scripts/hurtbox.gd" id="8_lerqx"]
+[ext_resource type="Script" uid="uid://dfknei7r0sixc" path="res://Assets/Scripts/attack_manager.gd" id="9_ecf78"]
+[ext_resource type="Script" uid="uid://cftmbn0yju3er" path="res://Assets/Scripts/hitbox.gd" id="10_vy5gb"]
 
 [sub_resource type="Animation" id="Animation_38rej"]
 length = 0.001
