@@ -2,9 +2,6 @@
 extends Area2D
 class_name HitBox
 
-@export var contact_cooldown: float = 0.8  # évite les dégâts en continu
-var _contact_timer: float = 0.0
-
 @export var damage: float = 1.0
 @export var debug_color: Color = Color(1.0, 0.2, 0.2, 0.4)
 
@@ -34,11 +31,14 @@ func _draw() -> void:
 		var r := Rect2(-rect.size / 2 + _shape.position, rect.size)
 		draw_rect(r, debug_color)
 
-func _process(delta: float) -> void:
-	if _contact_timer > 0.0:
-		_contact_timer -= delta
+func _physics_process(_delta: float) -> void:
+	if not monitoring:
+		return
+	# Détecte les hurtbox qui sont déjà dans la zone (contact continu)
+	for area in get_overlapping_areas():
+		if area is HurtBox:
+			area.receive_hit(damage)
 
 func _on_area_entered(area: Area2D) -> void:
-	if area is HurtBox and _contact_timer <= 0.0:
+	if area is HurtBox:
 		area.receive_hit(damage)
-		_contact_timer = contact_cooldown

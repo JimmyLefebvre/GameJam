@@ -4,6 +4,8 @@ class_name PlayerController
 #region Exports
 @export_group("Vie")
 @export var max_health: float
+@export var iframe_duration: float = 0.7
+var blink_duration: float = 0.6
 
 var health: float = 0.0
 
@@ -20,12 +22,10 @@ signal died
 
 @export_group("Gravité")
 @export var gravity: float = 800.0
-@export var fast_fall_gravity: float = 1000.0
 @export var wall_gravity: float = 100.0
 @export var apex_threshold: float = 20.0
 @export var apex_gravity_scale: float = 0.5
 @export var max_fall_speed: float = 400.0
-@export var max_fast_fall_speed: float = 600.0
 
 @export_group("Wall jump")
 @export var wall_jump_x_force: float = 1.0
@@ -38,7 +38,7 @@ signal died
 @export var dash_gravity_scale: float = 0.05
 @export var dash_cooldown: float = 0.6
 @export var dash_momentum_duration: float = 0.05
-@export var dash_end_momentum: float = 0.6  # remplace la constante DASH_END_MOMENTUM
+@export var dash_end_momentum: float = 0.6
 #endregion
 
 #region Constantes internes
@@ -54,6 +54,9 @@ var _vertical_input: float = 0.0
 var _wall_side: float = 0.0
 var _last_facing_dir: float = 1.0
 var is_dead := false
+
+# Iframes
+var _iframe_timer: float = 0.0
 
 # Wall jump
 var _wall_grip_timer: float = 0.0
@@ -85,6 +88,9 @@ func _ready() -> void:
 	died.connect(_on_died)
 
 func _physics_process(delta: float) -> void:
+	if _iframe_timer > 0.0:
+		_iframe_timer -= delta
+
 	_direction = Input.get_axis("move_left", "move_right")
 	_vertical_input = Input.get_axis("move_up", "fast_fall")
 
@@ -142,10 +148,10 @@ func _handle_gravity(delta: float) -> void:
 		return
 
 	if _dash_momentum_timer > 0.0:
-		return  # préserve velocity.y du dash
+		return
 
 	velocity.y += _calculate_gravity() * delta
-	var fall_cap := max_fast_fall_speed if Input.is_action_pressed("fast_fall") else max_fall_speed
+	var fall_cap := max_fall_speed
 	velocity.y = min(velocity.y, fall_cap)
 
 func _handle_horizontal(delta: float) -> void:
@@ -157,7 +163,7 @@ func _handle_horizontal(delta: float) -> void:
 
 	if _dash_momentum_timer > 0.0:
 		_dash_momentum_timer -= delta
-		return  # préserve velocity.x du dash
+		return
 
 	var target_x := _direction * speed * SPEED_MULTIPLIER
 	velocity.x = move_toward(velocity.x, target_x, acceleration * delta)
@@ -185,11 +191,10 @@ func _start_dash() -> void:
 	var raw_dir := Vector2(_direction, _vertical_input)
 	if raw_dir == Vector2.ZERO:
 		raw_dir = Vector2(sign(_get_facing_dir()), 0.0)
-	
-	var snappe := Vector2(sign(raw_dir.x), sign(raw_dir.y))
-	# Cardinal → pleine vitesse sur l'axe, diagonal → normalisé pour garder la même magnitude
-	_dash_direction = snappe.normalized() if snappe.x != 0.0 and snappe.y != 0.0 else snappe
-	
+
+	var issnapped := Vector2(sign(raw_dir.x), sign(raw_dir.y))
+	_dash_direction = issnapped.normalized() if issnapped.x != 0.0 and issnapped.y != 0.0 else issnapped
+
 	_dash_timer = dash_duration
 	_is_dashing = true
 	_dash_available = false
@@ -228,7 +233,6 @@ func _update_floor_state() -> void:
 	_wall_grip_timer = 0.0
 	_wall_jump_ready = false
 	_is_wall_jumping = false
-	# Recharge uniquement si le cooldown est écoulé
 	if _dash_cooldown_timer <= 0.0:
 		_dash_available = true
 
@@ -241,8 +245,6 @@ func _calculate_gravity() -> float:
 		return gravity * dash_gravity_scale
 	if _is_wall_jumping:
 		return gravity
-	if Input.is_action_pressed("fast_fall"):
-		return fast_fall_gravity
 	if is_on_wall_only() and velocity.y > 0 and _direction != 0:
 		return wall_gravity
 	if abs(velocity.y) < apex_threshold:
@@ -273,7 +275,10 @@ func get_facing_dir() -> float:
 
 func is_dashing() -> bool:
 	return _is_dashing
-	
+
+func is_invincible() -> bool:
+	return _iframe_timer > 0.0
+
 func get_dash_fill() -> float:
 	if _is_dashing:
 		return 0.0
@@ -281,7 +286,7 @@ func get_dash_fill() -> float:
 		return 1.0 - (_dash_cooldown_timer / dash_cooldown)
 	if _dash_available:
 		return 1.0
-	return -1.0  # dash dépensé en l'air, aucun cooldown → état distinct
+	return -1.0
 
 #endregion
 
@@ -289,18 +294,19 @@ func get_dash_fill() -> float:
 
 func _on_coyote_timeout() -> void:
 	_coyote_jump_available = false
-	
+
 func _on_damaged(amount: float) -> void:
-	if is_dead:
+	if is_dead or _iframe_timer > 0.0:
 		return
 
 	health -= amount
+	_iframe_timer = iframe_duration
 	damaged.emit(amount)
 
 	if health <= 0.0:
 		is_dead = true
 		died.emit()
-		
+
 func _on_died() -> void:
 	is_dead = true
 	set_physics_process(false)
