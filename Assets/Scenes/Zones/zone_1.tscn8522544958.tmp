@@ -172,8 +172,7 @@ texture = ExtResource("9_cmj6v")
 0:3/0/physics_layer_0/polygon_0/one_way = true
 
 [sub_resource type="TileSet" id="TileSet_cmj6v"]
-physics_layer_0/collision_layer = 16
-physics_layer_0/collision_mask = 3
+physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain"
 terrain_set_0/terrain_0/color = Color(0.7151652, 0.08425567, 0.14234477, 1)
@@ -342,24 +341,21 @@ collision_enabled = false
 
 [node name="Player" parent="." unique_id=278113804 instance=ExtResource("2_t0x5v")]
 position = Vector2(-422, -48)
-collision_mask = 16
+collision_mask = 1
 max_health = 100.0
 dash_duration = 0.075
 dash_cooldown = 0.5
 
-[node name="Enemy_slow" parent="." unique_id=51726171 node_paths=PackedStringArray("player") instance=ExtResource("3_8uggh")]
-position = Vector2(-253, 1)
-player = NodePath("../Player")
+[node name="Enemy_slow" parent="." unique_id=51726171 instance=ExtResource("3_8uggh")]
+position = Vector2(-253, 9)
 enemy_stats = ExtResource("4_6giwr")
 
-[node name="Enemy_mid" parent="." unique_id=1838781703 node_paths=PackedStringArray("player") instance=ExtResource("3_8uggh")]
+[node name="Enemy_mid" parent="." unique_id=1838781703 instance=ExtResource("3_8uggh")]
 position = Vector2(-242, 70)
-player = NodePath("../Player")
 enemy_stats = ExtResource("5_pw3mj")
 
-[node name="Enemy_fast" parent="." unique_id=1601669146 node_paths=PackedStringArray("player") instance=ExtResource("3_8uggh")]
+[node name="Enemy_fast" parent="." unique_id=1601669146 instance=ExtResource("3_8uggh")]
 position = Vector2(-556, -206)
-player = NodePath("../Player")
 enemy_stats = ExtResource("6_rexef")
 
 [node name="Background" parent="." unique_id=1222665295 instance=ExtResource("7_rexef")]
