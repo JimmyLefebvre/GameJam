@@ -47,6 +47,7 @@ resource_name = "fall"
 
 [sub_resource type="Animation" id="Animation_xv74q"]
 resource_name = "idle"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -233,6 +234,7 @@ size = Vector2(16, 23.5)
 [node name="Player" type="CharacterBody2D" unique_id=278113804]
 collision_mask = 26
 script = ExtResource("1_7dd06")
+metadata/_edit_vertical_guides_ = [23.0]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=365077027]
 physics_interpolation_mode = 1

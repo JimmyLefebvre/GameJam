@@ -5,7 +5,6 @@ class_name EnemyType
 @export var type: types
 
 @export var speed: float
-@export var movement_range: float
 
 @export var damage: float
 @export var health: float
