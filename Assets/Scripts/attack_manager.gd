@@ -6,13 +6,12 @@ signal attack_started(direction: Vector2)
 signal attack_ended
 
 @export var player: PlayerController
-@export var attack_duration: float = 0.2
+@export var attack_duration: float = 0.4
 @export var attack_cooldown: float = 0.3
 
 @export_group("HitBoxes")
 @export var hitbox_right: HitBox
 @export var hitbox_left: HitBox
-@export var hitbox_up: HitBox
 @export var hitbox_down: HitBox
 
 var is_attacking: bool = false
@@ -37,9 +36,6 @@ func _get_attack_direction() -> Vector2:
 	var vertical := Input.get_axis("move_up", "fast_fall")
 	var horizontal := Input.get_axis("move_left", "move_right")
 
-	# Priorité verticale si input vertical, sinon direction du regard
-	if vertical < 0.0:
-		return Vector2.UP
 	if vertical > 0.0:
 		return Vector2.DOWN
 	if horizontal != 0.0:
@@ -62,8 +58,6 @@ func _end_attack() -> void:
 	attack_ended.emit()
 
 func _hitbox_for_direction(dir: Vector2) -> HitBox:
-	if dir == Vector2.UP:
-		return hitbox_up
 	if dir == Vector2.DOWN:
 		return hitbox_down
 	if dir.x < 0.0:
