@@ -376,7 +376,6 @@ tree_root = SubResource("AnimationNodeStateMachine_ecf78")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=811558220]
-visible = false
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_7dd06")
 
@@ -407,7 +406,6 @@ player = NodePath("..")
 offset = Vector2(10, -25)
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=792214371]
-visible = false
 collision_mask = 8
 script = ExtResource("8_lerqx")
 
