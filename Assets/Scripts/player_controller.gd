@@ -109,6 +109,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+
 #region Handlers principaux
 
 func _handle_dash(delta: float) -> bool:
@@ -315,3 +316,7 @@ func _on_died() -> void:
 	SceneManager.fade_and_reload()
 
 #endregion
+
+
+func _on_resume_pressed() -> void:
+	pass # Replace with function body.

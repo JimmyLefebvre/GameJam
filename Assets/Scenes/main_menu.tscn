@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://d2w877o86e1p4"]
+
+[ext_resource type="Script" uid="uid://daorst0b5w6tm" path="res://main_menu.gd" id="1_x6jn2"]
+[ext_resource type="FontFile" uid="uid://csnqsoess2474" path="res://Assets/Unkempt-Regular.ttf" id="2_cbhea"]
+[ext_resource type="Texture2D" uid="uid://colgtjwu7hxdo" path="res://Assets/Sprites/Game background .jpg" id="3_tanm1"]
+[ext_resource type="FontFile" uid="uid://cdn3ppwbmm1tv" path="res://Assets/Unkempt-Bold.ttf" id="4_tanm1"]
+
+[node name="Main Menu" type="Node2D" unique_id=924310]
+script = ExtResource("1_x6jn2")
+
+[node name="Button_manager" type="Control" parent="." unique_id=1709845436]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Start" type="Button" parent="Button_manager" unique_id=1017577030]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 115.0
+offset_right = 384.0
+offset_bottom = 182.0
+theme_override_colors/font_hover_color = Color(0.6117647, 0.9764706, 1, 1)
+theme_override_fonts/font = ExtResource("2_cbhea")
+theme_override_font_sizes/font_size = 30
+text = "Start"
+
+[node name="Options" type="Button" parent="Button_manager" unique_id=120450632]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 200.0
+offset_right = 384.0
+offset_bottom = 267.0
+theme_override_colors/font_hover_color = Color(0.6117647, 0.9764706, 1, 1)
+theme_override_fonts/font = ExtResource("2_cbhea")
+theme_override_font_sizes/font_size = 30
+text = "Options"
+
+[node name="Quit" type="Button" parent="Button_manager" unique_id=384891065]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 285.0
+offset_right = 384.0
+offset_bottom = 352.0
+theme_override_colors/font_hover_color = Color(0.6117647, 0.9764706, 1, 1)
+theme_override_fonts/font = ExtResource("2_cbhea")
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1865949468]
+show_behind_parent = true
+position = Vector2(320.00003, 180)
+scale = Vector2(0.15624999, 0.210035)
+texture = ExtResource("3_tanm1")
+
+[node name="Label" type="Label" parent="." unique_id=642600729]
+offset_left = 192.0
+offset_top = 30.0
+offset_right = 448.0
+offset_bottom = 75.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_tanm1")
+theme_override_font_sizes/font_size = 37
+text = "Le jeu de Balbot"
+
+[connection signal="pressed" from="Button_manager/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Button_manager/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Button_manager/Quit" to="." method="_on_quit_pressed"]
