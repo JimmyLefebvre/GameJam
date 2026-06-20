@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://duodyg2m8jaf6" path="res://Assets/Scripts/hurtbox.gd" id="8_lerqx"]
 [ext_resource type="Script" uid="uid://dfknei7r0sixc" path="res://Assets/Scripts/attack_manager.gd" id="9_ecf78"]
 [ext_resource type="Script" uid="uid://cftmbn0yju3er" path="res://Assets/Scripts/hitbox.gd" id="10_vy5gb"]
-[ext_resource type="Script" uid="uid://bm1c6x85hxhxl" path="res://Assets/Scripts/sfx_player.gd" id="11_vy5gb"]
+[ext_resource type="Script" path="res://Assets/Scripts/sfx_player.gd" id="11_vy5gb"]
 
 [sub_resource type="Animation" id="Animation_vy5gb"]
 length = 0.001

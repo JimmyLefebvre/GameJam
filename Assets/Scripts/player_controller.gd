@@ -322,7 +322,7 @@ func _on_damaged(amount: float) -> void:
 	health -= amount
 	_iframe_timer = iframe_duration
 	damaged.emit(amount)
-	$SfxPlayer.play(preload("res://Assets/Audio/SFX/hit.mp3"), -18.0, 0.2)
+	$SfxPlayer.play(preload("res://Assets/Audio/SFX/hit.mp3"), -25.0, 0.2)
 
 	if health <= 0.0:
 		is_dead = true
