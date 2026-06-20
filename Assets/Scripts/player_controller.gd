@@ -77,6 +77,10 @@ var _dash_momentum_timer: float = 0.0
 var _coyote_jump_available: bool = true
 var _input_buffer: Timer
 var _coyote_timer: Timer
+
+# Footstep
+var _footstep_timer: float = 0.0
+const FOOTSTEP_INTERVAL: float = 0.3
 #endregion
 
 func _ready() -> void:
@@ -172,6 +176,17 @@ func _handle_horizontal(delta: float) -> void:
 	if _direction != 0.0:
 		_last_facing_dir = _direction
 
+	_handle_footsteps(delta)
+
+func _handle_footsteps(delta: float) -> void:
+	if not is_on_floor() or abs(velocity.x) < 1.0:
+		_footstep_timer = 0.0
+		return
+	_footstep_timer -= delta
+	if _footstep_timer <= 0.0:
+		_footstep_timer = FOOTSTEP_INTERVAL
+		$SfxPlayer.play(preload("res://Assets/Audio/SFX/footstep.mp3"), -5.0, 0.2)
+
 #endregion
 
 #region Actions de saut / dash
@@ -180,6 +195,7 @@ func _do_jump() -> void:
 	velocity.y = jump_power * JUMP_MULTIPLIER
 	_coyote_jump_available = false
 	_is_wall_jumping = false
+	$SfxPlayer.play(preload("res://Assets/Audio/SFX/jump.wav"), -15.0, 0.1)
 
 func _do_wall_jump() -> void:
 	velocity.y = jump_power * JUMP_MULTIPLIER
@@ -188,6 +204,7 @@ func _do_wall_jump() -> void:
 	_is_wall_jumping = true
 	_wall_grip_timer = 0.0
 	_wall_jump_ready = false
+	$SfxPlayer.play(preload("res://Assets/Audio/SFX/jump.wav"), -15.0, 0.1)
 
 func _start_dash() -> void:
 	var raw_dir := Vector2(_direction, _vertical_input)
@@ -201,6 +218,7 @@ func _start_dash() -> void:
 	_is_dashing = true
 	_dash_available = false
 	velocity = Vector2.ZERO
+	$SfxPlayer.play(preload("res://Assets/Audio/SFX/dash.wav"), -10.0, 0.1)
 
 func _end_dash() -> void:
 	_is_dashing = false
@@ -304,6 +322,7 @@ func _on_damaged(amount: float) -> void:
 	health -= amount
 	_iframe_timer = iframe_duration
 	damaged.emit(amount)
+	$SfxPlayer.play(preload("res://Assets/Audio/SFX/hit.mp3"), -18.0, 0.2)
 
 	if health <= 0.0:
 		is_dead = true
@@ -314,6 +333,7 @@ func _on_died() -> void:
 	set_physics_process(false)
 	set_process(false)
 	$CollisionShape2D.set_deferred("disabled", true)
+	$SfxPlayer.play(preload("res://Assets/Audio/SFX/player_death.mp3"), -10.0)
 	SceneManager.fade_and_reload()
 
 func heal(amount: float) -> void:

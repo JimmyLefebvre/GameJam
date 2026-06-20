@@ -12,4 +12,6 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is PlayerController:
 		body.heal(heal_amount)
+		if body.has_node("SfxPlayer"):
+			body.get_node("SfxPlayer").play(preload("res://Assets/Audio/SFX/pickup.wav"), -8.0, 0.1)
 		queue_free()

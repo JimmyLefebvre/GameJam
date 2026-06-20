@@ -330,10 +330,10 @@ duration = 2.0
 size = Vector2(12.75, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rsrmw"]
-size = Vector2(43, 18)
+size = Vector2(32, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o8kuu"]
-size = Vector2(44, 18)
+size = Vector2(32, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8qq7w"]
 size = Vector2(26, 25)
@@ -341,6 +341,26 @@ size = Vector2(26, 25)
 [node name="Player" type="CharacterBody2D" unique_id=278113804]
 collision_mask = 26
 script = ExtResource("1_7dd06")
+max_health = null
+iframe_duration = null
+speed = null
+acceleration = null
+jump_power = null
+jump_cut_multiplier = null
+gravity = null
+wall_gravity = null
+apex_threshold = null
+apex_gravity_scale = null
+max_fall_speed = null
+wall_jump_x_force = null
+wall_jump_lock_duration = null
+wall_grip_required = null
+dash_speed = null
+dash_duration = null
+dash_gravity_scale = null
+dash_cooldown = null
+dash_momentum_duration = null
+dash_end_momentum = null
 metadata/_edit_vertical_guides_ = [23.0]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=365077027]
@@ -422,7 +442,6 @@ hitbox_left = NodePath("HitBoxLeft")
 hitbox_down = NodePath("HitBoxDown")
 
 [node name="HitBoxRight" type="Area2D" parent="AttackManager" unique_id=1672767480]
-visible = false
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("10_vy5gb")
@@ -430,11 +449,10 @@ damage = 5.0
 continuous = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackManager/HitBoxRight" unique_id=85809265]
-position = Vector2(9.5, -15)
+position = Vector2(15, -15)
 shape = SubResource("RectangleShape2D_rsrmw")
 
 [node name="HitBoxLeft" type="Area2D" parent="AttackManager" unique_id=1093555786]
-visible = false
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("10_vy5gb")
@@ -442,11 +460,10 @@ damage = 5.0
 continuous = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackManager/HitBoxLeft" unique_id=1846000233]
-position = Vector2(-11, -15)
+position = Vector2(-17, -15)
 shape = SubResource("RectangleShape2D_o8kuu")
 
 [node name="HitBoxDown" type="Area2D" parent="AttackManager" unique_id=792980179]
-visible = false
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("10_vy5gb")
