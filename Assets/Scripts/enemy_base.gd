@@ -3,6 +3,10 @@ class_name EnemyBase
 @export var player: CharacterBody2D 
 @export var enemy_stats: EnemyType
 @export var hitbox: HitBox
+@export var patrol_distance: float = 75.0
+@export var blink_duration: float = 0.4
+@export var blink_interval: float = 0.1
+@export var death_fade_duration: float = 0.4
 var health: float
 var damage: float
 
@@ -13,8 +17,8 @@ var right_bounds: Vector2
 
 var _is_visible: bool = false
 @onready var _hurtbox: HurtBox = $HurtBox if has_node("HurtBox") else null
-@onready var sprite: Sprite2D = $Sprite2D
-@onready var ray_cast: RayCast2D = $Sprite2D/RayCast2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var ray_cast: RayCast2D = $AnimatedSprite2D/RayCast2D
 @onready var timer = $Timer
 
 enum States{
@@ -24,16 +28,18 @@ enum States{
 
 var current_state = States.WANDER
 
+var _blink_tween: Tween = null
+var _is_blinking: bool = false
+
 func _ready() -> void:
-	left_bounds = self.position + Vector2(-75,0)
-	right_bounds = self.position + Vector2(75,0)
+	left_bounds = self.position + Vector2(-patrol_distance, 0)
+	right_bounds = self.position + Vector2(patrol_distance, 0)
 	direction = Vector2(-1, 0)
 	
 	
 	enemy_stats = enemy_stats.duplicate()
 	health = enemy_stats.health
 	damage = enemy_stats.damage
-	set_modulate(enemy_stats.find_appearance())
 	
 
 	$VisibleOnScreenNotifier2D.screen_entered.connect(_on_screen_entered)
@@ -42,6 +48,8 @@ func _ready() -> void:
 		_hurtbox.damaged.connect(_on_damaged)
 	$HitBox.damage = enemy_stats.damage
 	$HitBox.activate()  # ← la hitbox ennemie est active en permanence
+
+	sprite.play("default")
 
 func _physics_process(delta):
 	handle_gravity(delta)
@@ -74,9 +82,9 @@ func change_direction() -> void:
 		sprite.flip_h = direction.x < 0
 
 		if direction.x > 0:
-			ray_cast.target_position = Vector2(1000, 0)
+			ray_cast.target_position = Vector2(400, 0)
 		else:
-			ray_cast.target_position = Vector2(-1000, 0)
+			ray_cast.target_position = Vector2(-400, 0)
 
 	else:
 		direction = (player.global_position - global_position).normalized()
@@ -84,9 +92,9 @@ func change_direction() -> void:
 		sprite.flip_h = direction.x < 0
 
 		if direction.x > 0:
-			ray_cast.target_position = Vector2(1000, 0)
+			ray_cast.target_position = Vector2(400, 0)
 		else:
-			ray_cast.target_position = Vector2(-1000, 0)
+			ray_cast.target_position = Vector2(-400, 0)
 
 	ray_cast.force_raycast_update()
 
@@ -125,10 +133,41 @@ func stop_chase() -> void:
 func _on_damaged(amount: float) -> void:
 	health -= amount
 	if health <= 0.0:
-		queue_free()
+		_die()
+		return
+	_start_blink()
+
+func _die() -> void:
+	set_physics_process(false)
+	$CollisionShape2D.set_deferred("disabled", true)
+	if _hurtbox:
+		_hurtbox.set_deferred("monitoring", false)
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(sprite, "modulate", Color(1.0, 0.2, 0.2, 0.0), death_fade_duration)
+	tween.set_parallel(false)
+	tween.tween_callback(queue_free)
+
+func _start_blink() -> void:
+	if _is_blinking:
+		return
+	_is_blinking = true
+	sprite.modulate = Color.WHITE
+	_blink_tween = create_tween().set_loops()
+	_blink_tween.tween_property(sprite, "modulate", Color(1.0, 0.2, 0.2), blink_interval)
+	_blink_tween.tween_property(sprite, "modulate", Color.WHITE, blink_interval)
+
+	await get_tree().create_timer(blink_duration).timeout
+
+	if _blink_tween:
+		_blink_tween.kill()
+		_blink_tween = null
+	sprite.modulate = Color.WHITE
+	_is_blinking = false
 
 func _on_screen_entered() -> void:
 	_is_visible = true
+
 
 func _on_screen_exited() -> void:
 	_is_visible = false
