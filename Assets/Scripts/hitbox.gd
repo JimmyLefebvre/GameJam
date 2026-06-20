@@ -22,8 +22,8 @@ func activate() -> void:
 	queue_redraw()
 
 func deactivate() -> void:
-	monitoring = false
-	monitorable = false
+	set_deferred("monitoring", false)
+	set_deferred("monitorable", false)
 	_already_hit.clear()
 	queue_redraw()
 

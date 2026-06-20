@@ -135,6 +135,7 @@ func _on_damaged(amount: float) -> void:
 	if health <= 0.0:
 		_die()
 		return
+	_play_hit_sfx()
 	_start_blink()
 
 func _die() -> void:
@@ -142,11 +143,24 @@ func _die() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
 	if _hurtbox:
 		_hurtbox.set_deferred("monitoring", false)
+	$HitBox.deactivate()
+	_play_death_sfx()
 	var tween := create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(sprite, "modulate", Color(1.0, 0.2, 0.2, 0.0), death_fade_duration)
 	tween.set_parallel(false)
 	tween.tween_callback(queue_free)
+
+func _play_death_sfx() -> void:
+	# Joué via le joueur pour que le son survive après queue_free() de l'ennemi
+	var p := get_tree().get_first_node_in_group("player")
+	if p and p.has_node("SfxPlayer"):
+		p.get_node("SfxPlayer").play(preload("res://Assets/Audio/SFX/enemy_death.wav"), -10, 0.1)
+
+func _play_hit_sfx() -> void:
+	var p := get_tree().get_first_node_in_group("player")
+	if p and p.has_node("SfxPlayer"):
+		p.get_node("SfxPlayer").play(preload("res://Assets/Audio/SFX/hitE.wav"), -25.0, 0.2)
 
 func _start_blink() -> void:
 	if _is_blinking:

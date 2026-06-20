@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cftmbn0yju3er" path="res://Assets/Scripts/hitbox.gd" id="2_e2b7p"]
 [ext_resource type="Script" uid="uid://duodyg2m8jaf6" path="res://Assets/Scripts/hurtbox.gd" id="3_2g0jp"]
 [ext_resource type="Texture2D" uid="uid://j4mf1of8l7m" path="res://Assets/Sprites/imgninaEnemy-sheet.png" id="3_4ye20"]
+[ext_resource type="Script" uid="uid://bm1c6x85hxhxl" path="res://Assets/Scripts/sfx_player.gd" id="5_4870b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ye20"]
 size = Vector2(12.000002, 29.000004)
@@ -127,5 +128,8 @@ shape = SubResource("RectangleShape2D_2g0jp")
 
 [node name="Timer" type="Timer" parent="." unique_id=364069663]
 wait_time = 6.0
+
+[node name="SfxPlayer" type="Node" parent="." unique_id=1355463073]
+script = ExtResource("5_4870b")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

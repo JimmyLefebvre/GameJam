@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bcjo8drov8xcc"]
 
 [ext_resource type="Texture2D" uid="uid://dxd2wvktp0m6i" path="res://Assets/Sprites/imgninaClock-sheet.png" id="1_7up3u"]
-[ext_resource type="Script" path="res://Assets/Scripts/heal_pickup.gd" id="2_heal"]
+[ext_resource type="Script" uid="uid://bhdv157elaobe" path="res://Assets/Scripts/heal_pickup.gd" id="2_heal"]
+[ext_resource type="Script" uid="uid://bm1c6x85hxhxl" path="res://Assets/Scripts/sfx_player.gd" id="3_82jwx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x8eh8"]
 atlas = ExtResource("1_7up3u")
@@ -58,13 +59,14 @@ size = Vector2(13, 17)
 
 [node name="Clock" type="Area2D" unique_id=447590793]
 collision_layer = 0
-collision_mask = 1
 script = ExtResource("2_heal")
-heal_amount = 20.0
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=2069642145]
 sprite_frames = SubResource("SpriteFrames_stm4o")
 frame_progress = 0.94560605
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=678532395]
 shape = SubResource("RectangleShape2D_heal")
+
+[node name="SfxPlayer" type="Node" parent="." unique_id=798903199]
+script = ExtResource("3_82jwx")

@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://csnqsoess2474" path="res://Assets/Unkempt-Regular.ttf" id="2_cbhea"]
 [ext_resource type="Texture2D" uid="uid://colgtjwu7hxdo" path="res://Assets/Sprites/Game background .jpg" id="3_tanm1"]
 [ext_resource type="FontFile" uid="uid://cdn3ppwbmm1tv" path="res://Assets/Unkempt-Bold.ttf" id="4_tanm1"]
+[ext_resource type="Script" uid="uid://hycvei67p7fn" path="res://Assets/Scripts/music_player.gd" id="5_6qsvb"]
 
 [node name="Main Menu" type="Node2D" unique_id=924310]
 script = ExtResource("1_x6jn2")
@@ -63,6 +64,9 @@ theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("4_tanm1")
 theme_override_font_sizes/font_size = 37
 text = "Le jeu de Balbot"
+
+[node name="MusicPlayer" type="Node" parent="." unique_id=1408916514]
+script = ExtResource("5_6qsvb")
 
 [connection signal="pressed" from="Button_manager/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Button_manager/Options" to="." method="_on_options_pressed"]

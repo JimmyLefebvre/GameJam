@@ -48,6 +48,7 @@ func _start_attack(dir: Vector2) -> void:
 	_active_hitbox = _hitbox_for_direction(dir)
 	_active_hitbox.activate()
 	attack_started.emit(dir)
+	$SfxPlayer.play(preload("res://Assets/Audio/SFX/attack.mp3"), -15.0, 0.15)
 
 func _end_attack() -> void:
 	is_attacking = false
