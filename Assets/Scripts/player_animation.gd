@@ -9,12 +9,14 @@ extends Node2D
 
 var _blink_tween: Tween = null
 var _is_blinking: bool = false
+var _heal_tween: Tween = null
 var _dash_anim_timer: float = 0.0
 
 const DASH_ANIM_DURATION: float = 0.15
 
 func _ready() -> void:
 	player_control.damaged.connect(_on_damaged)
+	player_control.healed.connect(_on_healed)
 	attack_manager.attack_started.connect(_on_attack_started)
 	attack_manager.attack_ended.connect(_on_attack_ended)
 
@@ -91,3 +93,10 @@ func _start_blink() -> void:
 		_blink_tween = null
 	sprite.modulate.a = 1.0
 	_is_blinking = false
+
+func _on_healed(_amount: float) -> void:
+	if _heal_tween:
+		_heal_tween.kill()
+	sprite.modulate = Color(0.5, 1.0, 0.6)
+	_heal_tween = create_tween()
+	_heal_tween.tween_property(sprite, "modulate", Color.WHITE, 0.3)

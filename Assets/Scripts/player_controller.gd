@@ -10,6 +10,7 @@ var blink_duration: float = 0.6
 var health: float = 0.0
 
 signal damaged(amount: float)
+signal healed(amount: float)
 signal died
 
 @export_group("Mouvement horizontal")
@@ -314,6 +315,12 @@ func _on_died() -> void:
 	set_process(false)
 	$CollisionShape2D.set_deferred("disabled", true)
 	SceneManager.fade_and_reload()
+
+func heal(amount: float) -> void:
+	if is_dead:
+		return
+	health = min(health + amount, max_health)
+	healed.emit(amount)
 
 #endregion
 

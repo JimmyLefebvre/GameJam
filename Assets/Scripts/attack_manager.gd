@@ -7,7 +7,7 @@ signal attack_ended
 
 @export var player: PlayerController
 @export var attack_duration: float = 0.4
-@export var attack_cooldown: float = 0.3
+@export var attack_cooldown: float = 0.05
 
 @export_group("HitBoxes")
 @export var hitbox_right: HitBox

@@ -425,6 +425,7 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("10_vy5gb")
 damage = 5.0
+continuous = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackManager/HitBoxRight" unique_id=85809265]
 position = Vector2(15, -15)
@@ -435,6 +436,7 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("10_vy5gb")
 damage = 5.0
+continuous = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackManager/HitBoxLeft" unique_id=1846000233]
 position = Vector2(-17, -15)
@@ -445,6 +447,7 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("10_vy5gb")
 damage = 5.0
+continuous = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackManager/HitBoxDown" unique_id=1463102906]
 position = Vector2(-1, 3)

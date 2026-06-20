@@ -1,6 +1,7 @@
-[gd_scene format=3 uid="uid://dhx0vg76612wx"]
+[gd_scene format=3 uid="uid://bcsco30av2t4h"]
 
 [ext_resource type="Script" uid="uid://dyredc4g7p8w8" path="res://Assets/Scenes/health_bar.gd" id="1_71ymp"]
+[ext_resource type="FontFile" uid="uid://cdn3ppwbmm1tv" path="res://Assets/Unkempt-Bold.ttf" id="2_th0pt"]
 
 [node name="HUD" type="CanvasLayer" unique_id=2055278921]
 layer = 5
@@ -11,6 +12,11 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_71ymp")
+
+[node name="Border" type="ColorRect" parent="HealthBar" unique_id=1162734131]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Background" type="ColorRect" parent="HealthBar" unique_id=1701886475]
 layout_mode = 0
@@ -26,3 +32,4 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_th0pt")
