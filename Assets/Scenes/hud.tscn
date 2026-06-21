@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dyredc4g7p8w8" path="res://Assets/Scenes/health_bar.gd" id="1_71ymp"]
 [ext_resource type="FontFile" uid="uid://cdn3ppwbmm1tv" path="res://Assets/Unkempt-Bold.ttf" id="2_th0pt"]
+[ext_resource type="Script" uid="uid://5cnksc3fn6yn" path="res://Assets/Scenes/enemy_counter.gd" id="3_xs5ck"]
+[ext_resource type="Texture2D" uid="uid://dinuhsux07qoa" path="res://Assets/Sprites/headEnemy.png" id="4_x7y1r"]
 
 [node name="HUD" type="CanvasLayer" unique_id=2055278921]
 layer = 5
@@ -33,3 +35,25 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("2_th0pt")
+
+[node name="EnemyCounter" type="Control" parent="." unique_id=151705589]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 620.0
+offset_top = 21.0
+offset_right = 660.0
+offset_bottom = 61.0
+script = ExtResource("3_xs5ck")
+
+[node name="Label" type="Label" parent="EnemyCounter" unique_id=771999714]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -7.0
+offset_right = 24.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("2_th0pt")
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyCounter" unique_id=1362748001]
+position = Vector2(-32, 3.5)
+scale = Vector2(2, 2)
+texture = ExtResource("4_x7y1r")

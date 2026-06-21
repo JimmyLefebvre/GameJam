@@ -1,5 +1,8 @@
 extends CharacterBody2D
 class_name EnemyBase
+
+signal enemy_died(enemy: EnemyBase)
+
 @export var player: CharacterBody2D 
 @export var enemy_stats: EnemyType
 @export var hitbox: HitBox
@@ -32,6 +35,7 @@ var _blink_tween: Tween = null
 var _is_blinking: bool = false
 
 func _ready() -> void:
+	add_to_group("enemy")
 	left_bounds = self.position + Vector2(-patrol_distance, 0)
 	right_bounds = self.position + Vector2(patrol_distance, 0)
 	direction = Vector2(-1, 0)
@@ -145,6 +149,7 @@ func _die() -> void:
 		_hurtbox.set_deferred("monitoring", false)
 	$HitBox.deactivate()
 	_play_death_sfx()
+	enemy_died.emit(self)
 	var tween := create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(sprite, "modulate", Color(1.0, 0.2, 0.2, 0.0), death_fade_duration)
