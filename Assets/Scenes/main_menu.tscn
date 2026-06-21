@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://daorst0b5w6tm" path="res://Assets/Scripts/main_menu.gd" id="1_x6jn2"]
 [ext_resource type="FontFile" uid="uid://csnqsoess2474" path="res://Assets/Unkempt-Regular.ttf" id="2_cbhea"]
-[ext_resource type="Texture2D" uid="uid://colgtjwu7hxdo" path="res://Assets/Sprites/Game background .jpg" id="3_tanm1"]
+[ext_resource type="Texture2D" uid="uid://dg2os0nvqs58e" path="res://Assets/Sprites/Illustration_sans_titre.jpg" id="3_6qsvb"]
 [ext_resource type="FontFile" uid="uid://cdn3ppwbmm1tv" path="res://Assets/Unkempt-Bold.ttf" id="4_tanm1"]
 [ext_resource type="Script" uid="uid://hycvei67p7fn" path="res://Assets/Scripts/music_player.gd" id="5_6qsvb"]
 
@@ -50,9 +50,9 @@ text = "Quitter"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1865949468]
 show_behind_parent = true
-position = Vector2(320.00003, 180)
-scale = Vector2(0.15624999, 0.210035)
-texture = ExtResource("3_tanm1")
+position = Vector2(319.5, 179.5)
+scale = Vector2(0.5054688, 0.5069445)
+texture = ExtResource("3_6qsvb")
 
 [node name="Label" type="Label" parent="." unique_id=642600729]
 offset_left = 192.0
