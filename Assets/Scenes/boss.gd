@@ -35,6 +35,7 @@ var _blink_tween: Tween = null
 var _is_blinking: bool = false
 
 func _ready() -> void:
+	add_to_group("boss")
 	left_bounds = self.position + Vector2(-patrol_distance, 0)
 	right_bounds = self.position + Vector2(patrol_distance, 0)
 	direction = Vector2(-1, 0)

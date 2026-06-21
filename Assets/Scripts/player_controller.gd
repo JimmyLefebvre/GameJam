@@ -3,7 +3,7 @@ class_name PlayerController
 
 #region Exports
 @export_group("Vie")
-@export var max_health: float
+@export var max_health: float = 100.0
 @export var iframe_duration: float = 0.7
 var blink_duration: float = 0.6
 

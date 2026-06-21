@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bghq0yjfstkkt"]
+
+[ext_resource type="Script" uid="uid://bau0ofkg58pck" path="res://Assets/Scripts/boss_block.gd" id="1_6vsnr"]
+[ext_resource type="Texture2D" uid="uid://kt4vyltd00tr" path="res://Assets/Sprites/bois.png" id="1_et1us"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vsnr"]
+size = Vector2(16, 16)
+
+[node name="BossBlock" type="StaticBody2D" unique_id=54215559]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_6vsnr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1882401813]
+texture = ExtResource("1_et1us")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=170746027]
+shape = SubResource("RectangleShape2D_6vsnr")

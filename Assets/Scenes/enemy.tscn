@@ -116,6 +116,7 @@ shape = SubResource("RectangleShape2D_3pmh0")
 rect = Rect2(-7, -15, 14, 31)
 
 [node name="HitBox" type="Area2D" parent="." unique_id=1466471373]
+visible = false
 collision_layer = 8
 script = ExtResource("2_e2b7p")
 damage = 100.0

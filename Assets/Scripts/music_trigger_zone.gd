@@ -1,12 +1,12 @@
-# music_trigger_zone.gd
-# Area2D à placer dans la scène pour déclencher un changement de musique
-# quand le joueur entre dans une zone (ex: avant un combat de boss).
 extends Area2D
-class_name MusicTriggerZone
 
-@export var music: AudioStream
-@export var music_player_path: NodePath  # chemin vers le MusicPlayer de la scène
-@export var once: bool = true  # ne se déclenche qu'une fois (ex: entrée dans l'arène du boss)
+@export var music: AudioStream                  # Boss.wav
+@export var music_player_path: NodePath         # chemin vers le MusicPlayer de la zone
+@export var boss_camera: Node2D                 # la PhantomCamera2D de la salle du boss
+@export var once: bool = true
+
+@export var boss: Boss
+var boss_health_bar_path: NodePath
 
 var _triggered: bool = false
 @onready var _music_player: MusicPlayer = get_node(music_player_path)
@@ -20,3 +20,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is PlayerController:
 		_triggered = true
 		_music_player.play(music)
+		boss_camera.priority = 10
+		var bar := get_tree().get_first_node_in_group("boss_health_bar")
+		if bar:
+			bar.activate(boss)

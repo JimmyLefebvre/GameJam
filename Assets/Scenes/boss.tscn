@@ -65,6 +65,7 @@ script = ExtResource("1_6stxf")
 hitbox = NodePath("HitBox")
 
 [node name="HitBox" type="Area2D" parent="." unique_id=885388145]
+visible = false
 position = Vector2(58, -74)
 collision_layer = 8
 script = ExtResource("3_jjjqd")
@@ -98,6 +99,7 @@ script = ExtResource("4_4ydte")
 wait_time = 6.0
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=147216808]
+visible = false
 position = Vector2(-9.536743e-07, -5.9604645e-08)
 scale = Vector2(0.99999994, 0.99999994)
 collision_layer = 2

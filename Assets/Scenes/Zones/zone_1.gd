@@ -29,11 +29,6 @@ func _on_enemy_died(_enemy: EnemyBase) -> void:
 
 	if remaining_enemies <= 0:
 		all_enemies_defeated.emit()
-		_unlock_boss_zone()
-
-func _unlock_boss_zone() -> void:
-	# Sera branché une fois la zone du boss et ses blocs créés.
-	pass
 
 func _input(event):
 	if event.is_action_pressed("esc"):

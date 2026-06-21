@@ -35,7 +35,7 @@ offset_bottom = 260.0
 theme_override_colors/font_hover_color = Color(0.6117647, 0.9764706, 1, 1)
 theme_override_fonts/font = ExtResource("2_cbhea")
 theme_override_font_sizes/font_size = 30
-text = "Options"
+text = "En savoir +"
 
 [node name="Quit" type="Button" parent="Button_manager" unique_id=384891065]
 layout_mode = 0
