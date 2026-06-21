@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://3yokuwjuhfed" path="res://Assets/Scripts/about_page.gd" id="1_about"]
 [ext_resource type="FontFile" uid="uid://csnqsoess2474" path="res://Assets/Unkempt-Regular.ttf" id="2_font"]
 [ext_resource type="FontFile" uid="uid://cdn3ppwbmm1tv" path="res://Assets/Unkempt-Bold.ttf" id="3_fontbold"]
-[ext_resource type="Texture2D" uid="uid://colgtjwu7hxdo" path="res://Assets/Sprites/Game background .jpg" id="4_uhqvv"]
+[ext_resource type="Texture2D" uid="uid://dg2os0nvqs58e" path="res://Assets/Sprites/Illustration_sans_titre.jpg" id="4_t0qoo"]
 [ext_resource type="Script" uid="uid://hycvei67p7fn" path="res://Assets/Scripts/music_player.gd" id="5_t0qoo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0qoo"]
@@ -98,9 +98,9 @@ text = "Retour"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=115106221]
 show_behind_parent = true
-position = Vector2(320.00003, 180)
-scale = Vector2(0.15624999, 0.210035)
-texture = ExtResource("4_uhqvv")
+position = Vector2(319.5, 179.5)
+scale = Vector2(0.5, 0.50000006)
+texture = ExtResource("4_t0qoo")
 
 [node name="MusicPlayer" type="Node" parent="." unique_id=1020573770]
 script = ExtResource("5_t0qoo")
