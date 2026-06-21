@@ -2,7 +2,7 @@
 extends Area2D
 class_name HitBox
 
-@export var damage: float = 1.0
+@export var damage: float = 10.0
 @export var debug_color: Color = Color(1.0, 0.2, 0.2, 0.4)
 @export var continuous: bool = true  # true = frappe en boucle (ennemis), false = un seul hit par activation (joueur)
 

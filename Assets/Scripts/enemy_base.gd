@@ -91,7 +91,10 @@ func change_direction() -> void:
 			ray_cast.target_position = Vector2(-400, 0)
 
 	else:
-		direction = (player.global_position - global_position).normalized()
+		var to_player := player.global_position - global_position
+		# Seule la composante horizontale pilote la vitesse de poursuite,
+		# sinon une différence de hauteur avec le joueur ralentit l'ennemi.
+		direction.x = sign(to_player.x)
 
 		sprite.flip_h = direction.x < 0
 

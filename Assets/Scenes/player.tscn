@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://duodyg2m8jaf6" path="res://Assets/Scripts/hurtbox.gd" id="8_lerqx"]
 [ext_resource type="Script" uid="uid://dfknei7r0sixc" path="res://Assets/Scripts/attack_manager.gd" id="9_ecf78"]
 [ext_resource type="Script" uid="uid://cftmbn0yju3er" path="res://Assets/Scripts/hitbox.gd" id="10_vy5gb"]
-[ext_resource type="Script" path="res://Assets/Scripts/sfx_player.gd" id="11_vy5gb"]
+[ext_resource type="Script" uid="uid://bm1c6x85hxhxl" path="res://Assets/Scripts/sfx_player.gd" id="11_vy5gb"]
 
 [sub_resource type="Animation" id="Animation_vy5gb"]
 length = 0.001
@@ -317,7 +317,7 @@ states/jump/position = Vector2(956, 100)
 states/move/node = SubResource("AnimationNodeAnimation_o8kuu")
 states/move/position = Vector2(348, 294)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_xv74q"), "idle", "fall", SubResource("AnimationNodeStateMachineTransition_8qq7w"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_tcr7l"), "idle", "move", SubResource("AnimationNodeStateMachineTransition_yrbh7"), "move", "fall", SubResource("AnimationNodeStateMachineTransition_aq5fl"), "move", "jump", SubResource("AnimationNodeStateMachineTransition_xka8r"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_ncqey"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_qnw5g"), "fall", "jump", SubResource("AnimationNodeStateMachineTransition_dsi02"), "fall", "idle", SubResource("AnimationNodeStateMachineTransition_eprmk"), "fall", "move", SubResource("AnimationNodeStateMachineTransition_ytees"), "jump", "move", SubResource("AnimationNodeStateMachineTransition_nqho8"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_5lpyi"), "idle", "dash", SubResource("AnimationNodeStateMachineTransition_fupf5"), "move", "dash", SubResource("AnimationNodeStateMachineTransition_d6hru"), "fall", "dash", SubResource("AnimationNodeStateMachineTransition_ggw7w"), "jump", "dash", SubResource("AnimationNodeStateMachineTransition_35grl"), "dash", "jump", SubResource("AnimationNodeStateMachineTransition_c8jh0"), "dash", "fall", SubResource("AnimationNodeStateMachineTransition_5jjye"), "dash", "move", SubResource("AnimationNodeStateMachineTransition_b5624"), "dash", "idle", SubResource("AnimationNodeStateMachineTransition_w34vp"), "attack_down", "fall", SubResource("AnimationNodeStateMachineTransition_7578i"), "fall", "attack_down", SubResource("AnimationNodeStateMachineTransition_mdvb1"), "idle", "attack_down", SubResource("AnimationNodeStateMachineTransition_vjh5i"), "attack_down", "idle", SubResource("AnimationNodeStateMachineTransition_tx0dr"), "move", "attack_down", SubResource("AnimationNodeStateMachineTransition_rgkdp"), "attack_down", "move", SubResource("AnimationNodeStateMachineTransition_r5ifs"), "dash", "attack_down", SubResource("AnimationNodeStateMachineTransition_tk7rj"), "attack_down", "dash", SubResource("AnimationNodeStateMachineTransition_c0qrj"), "jump", "attack_down", SubResource("AnimationNodeStateMachineTransition_cxlt4"), "attack_down", "jump", SubResource("AnimationNodeStateMachineTransition_icc0i"), "attack_side", "fall", SubResource("AnimationNodeStateMachineTransition_x1o4b"), "fall", "attack_side", SubResource("AnimationNodeStateMachineTransition_irxcm"), "jump", "attack_side", SubResource("AnimationNodeStateMachineTransition_bcaw2"), "attack_side", "jump", SubResource("AnimationNodeStateMachineTransition_23c4v"), "attack_side", "dash", SubResource("AnimationNodeStateMachineTransition_smmal"), "dash", "attack_side", SubResource("AnimationNodeStateMachineTransition_yh2vs"), "move", "attack_side", SubResource("AnimationNodeStateMachineTransition_xtryy"), "attack_side", "move", SubResource("AnimationNodeStateMachineTransition_gmr2b"), "attack_side", "idle", SubResource("AnimationNodeStateMachineTransition_4i0g1"), "idle", "attack_side", SubResource("AnimationNodeStateMachineTransition_ukllu")]
-graph_offset = Vector2(5.581644, -303.05447)
+graph_offset = Vector2(5.581644, -75.43938)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7dd06"]
 radius = 6.0
@@ -384,6 +384,7 @@ shape = SubResource("CapsuleShape2D_7dd06")
 top_level = true
 position = Vector2(0, -20)
 script = ExtResource("5_c3tg1")
+priority = 1
 follow_mode = 5
 follow_target = NodePath("..")
 zoom = Vector2(1.5, 1.5)

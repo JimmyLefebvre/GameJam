@@ -4,6 +4,8 @@
 [ext_resource type="FontFile" uid="uid://cdn3ppwbmm1tv" path="res://Assets/Unkempt-Bold.ttf" id="2_th0pt"]
 [ext_resource type="Script" uid="uid://5cnksc3fn6yn" path="res://Assets/Scenes/enemy_counter.gd" id="3_xs5ck"]
 [ext_resource type="Texture2D" uid="uid://dinuhsux07qoa" path="res://Assets/Sprites/headEnemy.png" id="4_x7y1r"]
+[ext_resource type="Script" uid="uid://blsqc1i2mpjh4" path="res://Assets/Scenes/boss_health_bar.gd" id="5_l5nkk"]
+[ext_resource type="Script" uid="uid://iusglpo550ws" path="res://Assets/Scenes/victory_screen.gd" id="6_vy1te"]
 
 [node name="HUD" type="CanvasLayer" unique_id=2055278921]
 layer = 5
@@ -57,3 +59,62 @@ theme_override_fonts/font = ExtResource("2_th0pt")
 position = Vector2(-32, 3.5)
 scale = Vector2(2, 2)
 texture = ExtResource("4_x7y1r")
+
+[node name="BossHealthBar" type="Control" parent="." unique_id=409962761]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 224.0
+offset_top = 15.0
+offset_right = 264.0
+offset_bottom = 55.0
+script = ExtResource("5_l5nkk")
+
+[node name="Border" type="ColorRect" parent="BossHealthBar" unique_id=399271183]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="ColorRect" parent="BossHealthBar" unique_id=307477693]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Fill" type="ColorRect" parent="BossHealthBar" unique_id=1203556945]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="BossHealthBar" unique_id=507457439]
+layout_mode = 0
+offset_top = -3.0
+offset_right = 40.0
+offset_bottom = 20.0
+
+[node name="VictoryScreen" type="Control" parent="." unique_id=1553624923]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_vy1te")
+
+[node name="ColorRect" type="ColorRect" parent="VictoryScreen" unique_id=1188395867]
+layout_mode = 0
+offset_left = -48.0
+offset_top = -34.0
+offset_right = 689.0
+offset_bottom = 405.0
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="Label" type="Label" parent="VictoryScreen" unique_id=560994467]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 639.0
+offset_bottom = 361.0
+theme_override_fonts/font = ExtResource("2_th0pt")
+theme_override_font_sizes/font_size = 30
+text = "Merci d'avoir joué !"
+horizontal_alignment = 1
+vertical_alignment = 1
