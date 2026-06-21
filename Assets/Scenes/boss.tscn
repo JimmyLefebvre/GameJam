@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://dyvvv67xtnp5m"]
+
+[ext_resource type="Script" uid="uid://d1auqan853wa0" path="res://Assets/Scenes/boss.gd" id="1_6stxf"]
+[ext_resource type="Texture2D" uid="uid://cs8u8puxs5hnc" path="res://Assets/Sprites/boss-sheet-sheet.png" id="2_4ydte"]
+[ext_resource type="Script" uid="uid://cftmbn0yju3er" path="res://Assets/Scripts/hitbox.gd" id="3_jjjqd"]
+[ext_resource type="Script" uid="uid://bm1c6x85hxhxl" path="res://Assets/Scripts/sfx_player.gd" id="4_4ydte"]
+[ext_resource type="Script" uid="uid://duodyg2m8jaf6" path="res://Assets/Scripts/hurtbox.gd" id="5_jjjqd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g70t6"]
+size = Vector2(38, 60.8125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4cuc"]
+atlas = ExtResource("2_4ydte")
+region = Rect2(0, 0, 80, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdxs0"]
+atlas = ExtResource("2_4ydte")
+region = Rect2(80, 0, 80, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0q3e"]
+atlas = ExtResource("2_4ydte")
+region = Rect2(160, 0, 80, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2uvy"]
+atlas = ExtResource("2_4ydte")
+region = Rect2(240, 0, 80, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlea4"]
+atlas = ExtResource("2_4ydte")
+region = Rect2(320, 0, 80, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_61tdc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4cuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdxs0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0q3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2uvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlea4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibhn7"]
+size = Vector2(42, 40.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4cuc"]
+size = Vector2(42.00003, 64)
+
+[node name="Boss" type="CharacterBody2D" unique_id=787742775 node_paths=PackedStringArray("hitbox")]
+collision_layer = 2
+collision_mask = 16
+script = ExtResource("1_6stxf")
+hitbox = NodePath("HitBox")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=885388145]
+position = Vector2(58, -74)
+collision_layer = 8
+script = ExtResource("3_jjjqd")
+damage = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1581894034]
+position = Vector2(-58, 43)
+shape = SubResource("RectangleShape2D_g70t6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=253464779]
+position = Vector2(0, -35)
+sprite_frames = SubResource("SpriteFrames_61tdc")
+frame_progress = 0.9875703
+
+[node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D" unique_id=837370298]
+position = Vector2(0, 9)
+target_position = Vector2(400, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1684319588]
+position = Vector2(0, -20.625)
+shape = SubResource("RectangleShape2D_ibhn7")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=616197676]
+position = Vector2(-12, -47)
+rect = Rect2(-9, -17, 42, 64)
+
+[node name="SfxPlayer" type="Node" parent="." unique_id=1312401623]
+script = ExtResource("4_4ydte")
+
+[node name="Timer" type="Timer" parent="." unique_id=488561904]
+wait_time = 6.0
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=147216808]
+position = Vector2(-9.536743e-07, -5.9604645e-08)
+scale = Vector2(0.99999994, 0.99999994)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("5_jjjqd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=773819167]
+position = Vector2(3.5762787e-07, -31.999989)
+scale = Vector2(0.9999992, 0.9999992)
+shape = SubResource("RectangleShape2D_n4cuc")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
