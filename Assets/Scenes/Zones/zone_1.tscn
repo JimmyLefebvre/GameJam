@@ -668,7 +668,7 @@ theme_override_constants/paragraph_spacing = 1
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("24_4yyqq")
 theme_override_font_sizes/font_size = 16
-text = "Bouger : ZQSD / ⬆⬅⬇⮕
+text = "Bouger : ZQSD / Flèches
 Saut : Espace
 Ruée : Shift
 Attaque : Clic gauche / X"
