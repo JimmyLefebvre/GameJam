@@ -13,6 +13,9 @@ signal damaged(amount: float)
 signal healed(amount: float)
 signal died
 
+signal first_move
+var _has_moved: bool = false
+
 @export_group("Mouvement horizontal")
 @export var speed: float = 4.8
 @export var acceleration: float = 1800.0
@@ -98,6 +101,10 @@ func _physics_process(delta: float) -> void:
 
 	_direction = Input.get_axis("move_left", "move_right")
 	_vertical_input = Input.get_axis("move_up", "fast_fall")
+	
+	if not _has_moved and (_direction != 0.0 or _vertical_input != 0.0 or Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("dash")):
+		_has_moved = true
+		first_move.emit()
 
 	if _dash_cooldown_timer > 0.0:
 		_dash_cooldown_timer -= delta

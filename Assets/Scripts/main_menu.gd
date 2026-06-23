@@ -6,6 +6,7 @@ func _ready() -> void:
 	$MusicPlayer.play(preload("res://Assets/Audio/Music/mainMenu.wav"))
 
 func _on_start_pressed() -> void:
+	Settings.chrono_active = $CheckBox.button_pressed
 	get_tree().change_scene_to_file("res://Assets/Scenes/Zones/zone_1.tscn")
 
 

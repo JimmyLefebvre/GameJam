@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bcsco30av2t4h"]
 
 [ext_resource type="Script" uid="uid://dyredc4g7p8w8" path="res://Assets/Scenes/health_bar.gd" id="1_71ymp"]
+[ext_resource type="Script" uid="uid://5y0ch3y3b3lb" path="res://Assets/Scripts/hud.gd" id="1_uttbk"]
 [ext_resource type="FontFile" uid="uid://cdn3ppwbmm1tv" path="res://Assets/Unkempt-Bold.ttf" id="2_th0pt"]
 [ext_resource type="Script" uid="uid://5cnksc3fn6yn" path="res://Assets/Scenes/enemy_counter.gd" id="3_xs5ck"]
 [ext_resource type="Texture2D" uid="uid://dinuhsux07qoa" path="res://Assets/Sprites/headEnemy.png" id="4_x7y1r"]
@@ -9,6 +10,7 @@
 
 [node name="HUD" type="CanvasLayer" unique_id=2055278921]
 layer = 5
+script = ExtResource("1_uttbk")
 
 [node name="HealthBar" type="Control" parent="." unique_id=444182603]
 layout_mode = 3
@@ -118,3 +120,10 @@ theme_override_font_sizes/font_size = 30
 text = "Merci d'avoir joué !"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ChronoLabel" type="Label" parent="." unique_id=2066990174]
+offset_left = 499.0
+offset_top = 42.0
+offset_right = 539.0
+offset_bottom = 65.0
+theme_override_fonts/font = ExtResource("2_th0pt")
