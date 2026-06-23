@@ -12,6 +12,8 @@ func _ready() -> void:
 	add_to_group("zone")
 	_register_enemies()
 	$MusicPlayer.play(preload("res://Assets/Audio/Music/Zone1.wav"))
+	$Boss.enemy_died.connect($HUD.stop_chrono) 
+	$Player.first_move.connect($HUD.start_chrono)
 
 func _register_enemies() -> void:
 	var enemies := get_tree().get_nodes_in_group("enemy")

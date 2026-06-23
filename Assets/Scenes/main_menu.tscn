@@ -68,6 +68,14 @@ text = "Time To Change"
 [node name="MusicPlayer" type="Node" parent="." unique_id=1408916514]
 script = ExtResource("5_6qsvb")
 
+[node name="CheckBox" type="CheckBox" parent="." unique_id=152428204]
+offset_left = 408.0
+offset_top = 122.0
+offset_right = 511.0
+offset_bottom = 170.0
+theme_override_fonts/font = ExtResource("4_tanm1")
+text = "Speedrun"
+
 [connection signal="pressed" from="Button_manager/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Button_manager/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Button_manager/Quit" to="." method="_on_quit_pressed"]
