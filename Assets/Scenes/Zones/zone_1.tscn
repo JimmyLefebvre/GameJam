@@ -23,7 +23,6 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="21_6nyeq"]
 [ext_resource type="Script" uid="uid://v1khg0weisnh" path="res://Assets/Scripts/music_trigger_zone.gd" id="22_6nyeq"]
 [ext_resource type="AudioStream" uid="uid://yghltbwlckgk" path="res://Assets/Audio/Music/Boss.wav" id="23_rp547"]
-[ext_resource type="FontFile" uid="uid://csnqsoess2474" path="res://Assets/Unkempt-Regular.ttf" id="24_4yyqq"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_m1vla"]
 polygon = PackedVector2Array(-7.4726563, -7.3109107, -5.8228493, -7.0521173, -4.8200245, -7.0844665, -3.4937096, -6.6962767, -2.6526318, -6.4698324, -1.5527592, -6.340436, -0.6469841, -6.890372, 0.097047806, -7.0844665, 1.0998707, -6.95507, 2.232092, -7.1168156, 3.2025661, -7.019768, 4.3994865, -6.8256736, 5.3052616, -7.019768, 6.3727856, -6.728626, 7.0521164, -6.728626, 7.569704, -6.56688, 8, -6.56688, 8, -2.0379972, 3.7201538, -1.9409494, 0.9381256, -2.2644415, -0.42053986, -2.5232344, -1.811554, -3.202567, -3.137869, -3.5907574, -4.043646, -4.1406927, -4.8847237, -4.6259303, -5.6611032, -5.078819, -6.4698324, -5.3052626, -6.8580227, -6.6962767)
@@ -576,6 +575,7 @@ offset_top = 101.00003
 offset_right = 487.0
 offset_bottom = 181.00003
 scale = Vector2(0.7, 0.7)
+focus_neighbor_bottom = NodePath("../Quit")
 theme_override_colors/font_hover_color = Color(0.6117647, 0.9764706, 1, 1)
 theme_override_fonts/font = ExtResource("11_y65xe")
 theme_override_font_sizes/font_size = 30
@@ -587,6 +587,7 @@ offset_top = 200.0
 offset_right = 487.0
 offset_bottom = 280.0
 scale = Vector2(0.7, 0.7)
+focus_neighbor_top = NodePath("../Resume")
 theme_override_colors/font_hover_color = Color(0.6117647, 0.9764706, 1, 1)
 theme_override_fonts/font = ExtResource("11_y65xe")
 theme_override_font_sizes/font_size = 30
@@ -655,23 +656,6 @@ boss = NodePath("../Boss")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1539782052]
 position = Vector2(6643.5, -87.5)
 shape = SubResource("RectangleShape2D_rp547")
-
-[node name="Label" type="Label" parent="." unique_id=2014981304]
-offset_left = -918.0
-offset_top = -144.0
-offset_right = -743.0
-offset_bottom = -52.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/line_spacing = -1
-theme_override_constants/paragraph_spacing = 1
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("24_4yyqq")
-theme_override_font_sizes/font_size = 16
-text = "Bouger : ZQSD / Flèches
-Saut : Espace
-Ruée : Shift
-Attaque : Clic gauche / X"
 
 [connection signal="pressed" from="PauseMenu/Resume" to="PauseMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/Quit" to="PauseMenu" method="_on_quit_pressed"]

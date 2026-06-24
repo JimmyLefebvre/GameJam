@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://c2ncdlhxqfh8s"]
+
+[ext_resource type="Script" uid="uid://bpb0bi7ktuyp2" path="res://Assets/Scripts/controls.gd" id="1_u1mtp"]
+[ext_resource type="FontFile" uid="uid://cdn3ppwbmm1tv" path="res://Assets/Unkempt-Bold.ttf" id="2_ndfjx"]
+[ext_resource type="Script" uid="uid://hycvei67p7fn" path="res://Assets/Scripts/music_player.gd" id="3_v0o7x"]
+[ext_resource type="Texture2D" uid="uid://dg2os0nvqs58e" path="res://Assets/Sprites/Illustration_sans_titre.jpg" id="4_52gtw"]
+[ext_resource type="FontFile" uid="uid://csnqsoess2474" path="res://Assets/Unkempt-Regular.ttf" id="5_1ukcj"]
+[ext_resource type="Script" uid="uid://blo8fwliotpph" path="res://Assets/Scripts/back.gd" id="6_ndfjx"]
+
+[node name="Controls" type="Node2D" unique_id=843411032]
+script = ExtResource("1_u1mtp")
+
+[node name="Label" type="Label" parent="." unique_id=1128277451]
+offset_right = 640.0
+offset_bottom = 296.0
+theme_override_fonts/font = ExtResource("2_ndfjx")
+theme_override_font_sizes/font_size = 15
+text = "CONTRÔLES
+
+Bouger/Move : ZQSD / Flèches / JoyStick / Croix
+
+Sauter/Jump : Espace / X Sony / A Xbox 
+
+Ruée/Dash : Shift / L1,L2 Sony / LB,LT Xbox
+
+Attaque : Clic Gauche / X / R1,R2 Sony / RB,RT Xbox"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicPlayer" type="Node" parent="." unique_id=290298178]
+script = ExtResource("3_v0o7x")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1298926402]
+modulate = Color(0.30692267, 0.3069227, 0.3069227, 1)
+show_behind_parent = true
+position = Vector2(319.5, 179.5)
+scale = Vector2(0.5, 0.50000006)
+texture = ExtResource("4_52gtw")
+
+[node name="Back" type="Button" parent="." unique_id=592055833]
+offset_left = 241.0
+offset_top = 307.0
+offset_right = 400.0
+offset_bottom = 344.0
+focus_neighbor_top = NodePath("../TabContainer")
+theme_override_colors/font_hover_color = Color(0.6117647, 0.9764706, 1, 1)
+theme_override_fonts/font = ExtResource("5_1ukcj")
+theme_override_font_sizes/font_size = 24
+text = "Retour"
+script = ExtResource("6_ndfjx")
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

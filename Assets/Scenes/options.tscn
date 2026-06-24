@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://3yokuwjuhfed" path="res://Assets/Scripts/about_page.gd" id="1_about"]
 [ext_resource type="FontFile" uid="uid://csnqsoess2474" path="res://Assets/Unkempt-Regular.ttf" id="2_font"]
 [ext_resource type="FontFile" uid="uid://cdn3ppwbmm1tv" path="res://Assets/Unkempt-Bold.ttf" id="3_fontbold"]
+[ext_resource type="Script" uid="uid://8qiymv631fu8" path="res://Assets/Scripts/tab_container.gd" id="4_r4njv"]
 [ext_resource type="Texture2D" uid="uid://dg2os0nvqs58e" path="res://Assets/Sprites/Illustration_sans_titre.jpg" id="4_t0qoo"]
 [ext_resource type="Script" uid="uid://hycvei67p7fn" path="res://Assets/Scripts/music_player.gd" id="5_t0qoo"]
 
@@ -35,10 +36,13 @@ offset_left = 40.0
 offset_top = 57.0
 offset_right = 600.0
 offset_bottom = 297.0
+focus_neighbor_bottom = NodePath("../Back")
+focus_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/panel = SubResource("StyleBoxFlat_t0qoo")
 current_tab = 1
+script = ExtResource("4_r4njv")
 
 [node name="Lore" type="Control" parent="TabContainer" unique_id=470798645]
 visible = false
@@ -91,6 +95,7 @@ offset_left = 241.0
 offset_top = 307.0
 offset_right = 400.0
 offset_bottom = 344.0
+focus_neighbor_top = NodePath("../TabContainer")
 theme_override_colors/font_hover_color = Color(0.6117647, 0.9764706, 1, 1)
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 24

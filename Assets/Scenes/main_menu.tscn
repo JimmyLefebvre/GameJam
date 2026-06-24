@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://daorst0b5w6tm" path="res://Assets/Scripts/main_menu.gd" id="1_x6jn2"]
 [ext_resource type="FontFile" uid="uid://csnqsoess2474" path="res://Assets/Unkempt-Regular.ttf" id="2_cbhea"]
 [ext_resource type="Texture2D" uid="uid://dg2os0nvqs58e" path="res://Assets/Sprites/Illustration_sans_titre.jpg" id="3_6qsvb"]
+[ext_resource type="Script" uid="uid://bfljgmwka4aj7" path="res://Assets/Scripts/start.gd" id="3_fadmi"]
 [ext_resource type="FontFile" uid="uid://cdn3ppwbmm1tv" path="res://Assets/Unkempt-Bold.ttf" id="4_tanm1"]
 [ext_resource type="Script" uid="uid://hycvei67p7fn" path="res://Assets/Scripts/music_player.gd" id="5_6qsvb"]
 
@@ -21,10 +22,12 @@ offset_left = 241.0
 offset_top = 115.0
 offset_right = 400.0
 offset_bottom = 175.0
+focus_neighbor_right = NodePath("../../CheckBox")
 theme_override_colors/font_hover_color = Color(0.6117647, 0.9764706, 1, 1)
 theme_override_fonts/font = ExtResource("2_cbhea")
 theme_override_font_sizes/font_size = 30
 text = "Commencer"
+script = ExtResource("3_fadmi")
 
 [node name="Options" type="Button" parent="Button_manager" unique_id=120450632]
 layout_mode = 0
@@ -47,6 +50,18 @@ theme_override_colors/font_hover_color = Color(0.6117647, 0.9764706, 1, 1)
 theme_override_fonts/font = ExtResource("2_cbhea")
 theme_override_font_sizes/font_size = 30
 text = "Quitter"
+
+[node name="Controls" type="Button" parent="Button_manager" unique_id=1551541484]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 200.0
+offset_right = 589.0
+offset_bottom = 260.0
+focus_neighbor_top = NodePath("../../CheckBox")
+theme_override_colors/font_hover_color = Color(0.6117647, 0.9764706, 1, 1)
+theme_override_fonts/font = ExtResource("2_cbhea")
+theme_override_font_sizes/font_size = 30
+text = "Contrôles"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1865949468]
 show_behind_parent = true
@@ -73,9 +88,12 @@ offset_left = 408.0
 offset_top = 122.0
 offset_right = 511.0
 offset_bottom = 170.0
+focus_neighbor_left = NodePath("../Button_manager/Start")
+focus_neighbor_bottom = NodePath("../Button_manager/Controls")
 theme_override_fonts/font = ExtResource("4_tanm1")
 text = "Speedrun"
 
 [connection signal="pressed" from="Button_manager/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Button_manager/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Button_manager/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Button_manager/Controls" to="." method="_on_controls_pressed"]
