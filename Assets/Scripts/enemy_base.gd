@@ -18,6 +18,8 @@ var direction: Vector2
 var left_bounds: Vector2
 var right_bounds: Vector2
 
+var is_dead: bool = false
+
 var _is_visible: bool = false
 @onready var _hurtbox: HurtBox = $HurtBox if has_node("HurtBox") else null
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -51,14 +53,12 @@ func _ready() -> void:
 	if _hurtbox:
 		_hurtbox.damaged.connect(_on_damaged)
 	$HitBox.damage = enemy_stats.damage
-	$HitBox.activate()  # ← la hitbox ennemie est active en permanence
+	$HitBox.activate() 
 
 	sprite.play("default")
 
 func _physics_process(delta):
 	handle_gravity(delta)
-	
-	# L'ennemi ne s'arrête hors de l'écran QUE s'il est en mode WANDER
 	if not _is_visible and current_state == States.WANDER:
 		velocity.x = 0
 		move_and_slide()
@@ -75,11 +75,9 @@ func _physics_process(delta):
 func change_direction() -> void:
 	if current_state == States.WANDER:
 
-		# Arrivé à gauche -> aller à droite
 		if position.x <= left_bounds.x:
 			direction.x = 1
 
-		# Arrivé à droite -> aller à gauche
 		elif position.x >= right_bounds.x:
 			direction.x = -1
 
@@ -92,8 +90,6 @@ func change_direction() -> void:
 
 	else:
 		var to_player := player.global_position - global_position
-		# Seule la composante horizontale pilote la vitesse de poursuite,
-		# sinon une différence de hauteur avec le joueur ralentit l'ennemi.
 		direction.x = sign(to_player.x)
 
 		sprite.flip_h = direction.x < 0
@@ -111,10 +107,7 @@ func handle_movement(delta:float) -> void:
 
 func handle_gravity(delta:float) -> void:
 	if not is_on_floor():
-		# --- CORRECTION ICI ---
-		# On multiplie par delta pour une accélération linéaire et fluide
 		velocity.y += gravity * delta 
-		# ----------------------
 
 func look_for_player():
 	if ray_cast.is_colliding():
@@ -138,6 +131,9 @@ func stop_chase() -> void:
 
 
 func _on_damaged(amount: float) -> void:
+	if is_dead:
+		return
+
 	health -= amount
 	if health <= 0.0:
 		_die()
@@ -146,6 +142,8 @@ func _on_damaged(amount: float) -> void:
 	_start_blink()
 
 func _die() -> void:
+	is_dead = true 
+	
 	set_physics_process(false)
 	$CollisionShape2D.set_deferred("disabled", true)
 	if _hurtbox:
@@ -160,7 +158,6 @@ func _die() -> void:
 	tween.tween_callback(queue_free)
 
 func _play_death_sfx() -> void:
-	# Joué via le joueur pour que le son survive après queue_free() de l'ennemi
 	var p := get_tree().get_first_node_in_group("player")
 	if p and p.has_node("SfxPlayer"):
 		p.get_node("SfxPlayer").play(preload("res://Assets/Audio/SFX/enemy_death.wav"), -10, 0.1)

@@ -36,3 +36,6 @@ func _input(event):
 	if event.is_action_pressed("esc"):
 		pause_menu.visible = !pause_menu.visible
 		get_tree().paused = pause_menu.visible
+
+		if pause_menu.visible:
+			pause_menu.get_node("Resume").call_deferred("grab_focus")
