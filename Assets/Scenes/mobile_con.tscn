@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://d1k0tax3kgk3j"]
+
+[ext_resource type="Texture2D" uid="uid://c3yg2p0s81rxn" path="res://Assets/Sprites/button/rightarrow.png" id="1_6iyg6"]
+[ext_resource type="Texture2D" uid="uid://cmgv1r76koscq" path="res://Assets/Sprites/button/rightarrow-sheet.png" id="2_73rrt"]
+[ext_resource type="Texture2D" uid="uid://dxx2m0mvfmwg3" path="res://Assets/Sprites/button/leftarrow.png" id="2_d830w"]
+[ext_resource type="Texture2D" uid="uid://bvswax8xgadir" path="res://Assets/Sprites/button/downarrow.png" id="3_3vuc2"]
+[ext_resource type="Texture2D" uid="uid://byxq8nrc7q2k5" path="res://Assets/Sprites/button/uparrow.png" id="4_4rifg"]
+[ext_resource type="Texture2D" uid="uid://cdlxv2dd202i7" path="res://Assets/Sprites/button/leftarrow-sheet.png" id="4_b2n7g"]
+[ext_resource type="Texture2D" uid="uid://cixmvn0dv3h6f" path="res://Assets/Sprites/button/jump.png" id="5_d830w"]
+[ext_resource type="Texture2D" uid="uid://do076821ad2l7" path="res://Assets/Sprites/button/dash.png" id="5_r7w8k"]
+[ext_resource type="Texture2D" uid="uid://bdfwm4r23ffp2" path="res://Assets/Sprites/button/downarrow-sheet.png" id="6_hucsx"]
+[ext_resource type="Texture2D" uid="uid://cj6v8ipq0gjyd" path="res://Assets/Sprites/button/dash-sheet.png" id="7_3vuc2"]
+[ext_resource type="Texture2D" uid="uid://cv4rpm6p3o235" path="res://Assets/Sprites/button/uparrowsheet.png" id="8_jnlb8"]
+[ext_resource type="Texture2D" uid="uid://jydaaig4qqu1" path="res://Assets/Sprites/button/jump-sheet.png" id="10_wqwcn"]
+[ext_resource type="Texture2D" uid="uid://duhq5th7w7rnt" path="res://Assets/Sprites/button/exit.png" id="13_hucsx"]
+[ext_resource type="Texture2D" uid="uid://b3hoysbqvpgaw" path="res://Assets/Sprites/button/exitsheet.png" id="14_jnlb8"]
+[ext_resource type="Texture2D" uid="uid://c7fpp00g16far" path="res://Assets/Sprites/button/attack.png" id="15_wqwcn"]
+[ext_resource type="Texture2D" uid="uid://fvcw2bminsec" path="res://Assets/Sprites/button/attacksheet.png" id="16_r6ik4"]
+
+[node name="MobileCon" type="CanvasLayer" unique_id=389725265]
+
+[node name="right" type="TouchScreenButton" parent="." unique_id=1254377205]
+modulate = Color(1, 1, 1, 0.46666667)
+position = Vector2(117, 227)
+scale = Vector2(1.2, 1.2)
+texture_normal = ExtResource("1_6iyg6")
+texture_pressed = ExtResource("2_73rrt")
+action = "move_right"
+visibility_mode = 1
+
+[node name="left" type="TouchScreenButton" parent="." unique_id=1828301133]
+modulate = Color(1, 1, 1, 0.46666667)
+position = Vector2(7, 227)
+scale = Vector2(1.2, 1.2)
+texture_normal = ExtResource("2_d830w")
+texture_pressed = ExtResource("4_b2n7g")
+action = "move_left"
+visibility_mode = 1
+
+[node name="down" type="TouchScreenButton" parent="." unique_id=53039450]
+modulate = Color(1, 1, 1, 0.46666667)
+position = Vector2(62, 278)
+scale = Vector2(1.2, 1.2)
+texture_normal = ExtResource("3_3vuc2")
+texture_pressed = ExtResource("6_hucsx")
+action = "fast_fall"
+visibility_mode = 1
+
+[node name="up" type="TouchScreenButton" parent="." unique_id=397715614]
+modulate = Color(1, 1, 1, 0.46666667)
+position = Vector2(62, 176)
+scale = Vector2(1.2, 1.2)
+texture_normal = ExtResource("4_4rifg")
+texture_pressed = ExtResource("8_jnlb8")
+action = "move_up"
+visibility_mode = 1
+
+[node name="jump" type="TouchScreenButton" parent="." unique_id=762797102]
+modulate = Color(1, 1, 1, 0.46666667)
+position = Vector2(530, 271)
+scale = Vector2(1.2, 1.2)
+texture_normal = ExtResource("5_d830w")
+texture_pressed = ExtResource("10_wqwcn")
+action = "jump"
+visibility_mode = 1
+
+[node name="dash" type="TouchScreenButton" parent="." unique_id=276132878]
+modulate = Color(1, 1, 1, 0.46666667)
+position = Vector2(530, 178)
+scale = Vector2(1.2, 1.2)
+texture_normal = ExtResource("5_r7w8k")
+texture_pressed = ExtResource("7_3vuc2")
+action = "dash"
+visibility_mode = 1
+
+[node name="exit" type="TouchScreenButton" parent="." unique_id=176016421]
+modulate = Color(1, 1, 1, 0.46666667)
+position = Vector2(12, 30)
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("13_hucsx")
+texture_pressed = ExtResource("14_jnlb8")
+action = "esc"
+visibility_mode = 1
+
+[node name="attack" type="TouchScreenButton" parent="." unique_id=2123239027]
+modulate = Color(1, 1, 1, 0.46666667)
+position = Vector2(437, 271)
+scale = Vector2(1.2, 1.2)
+texture_normal = ExtResource("15_wqwcn")
+texture_pressed = ExtResource("16_r6ik4")
+action = "attack_mobile"
+visibility_mode = 1
+
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
