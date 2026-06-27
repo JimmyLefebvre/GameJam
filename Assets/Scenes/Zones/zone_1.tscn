@@ -16,6 +16,7 @@
 [ext_resource type="FontFile" uid="uid://cdn3ppwbmm1tv" path="res://Assets/Unkempt-Bold.ttf" id="11_y65xe"]
 [ext_resource type="PackedScene" uid="uid://bcjo8drov8xcc" path="res://Assets/Scenes/clock.tscn" id="12_wbgto"]
 [ext_resource type="Script" uid="uid://hycvei67p7fn" path="res://Assets/Scripts/music_player.gd" id="13_5mnkj"]
+[ext_resource type="PackedScene" uid="uid://ddxsgu284xfo4" path="res://Assets/Scenes/volume.tscn" id="17_0w3bd"]
 [ext_resource type="PackedScene" uid="uid://dyvvv67xtnp5m" path="res://Assets/Scenes/boss.tscn" id="18_nr4vk"]
 [ext_resource type="PackedScene" uid="uid://bghq0yjfstkkt" path="res://Assets/Scenes/boss_block.tscn" id="19_382wk"]
 [ext_resource type="Script" uid="uid://bkwgjkvb35wkk" path="res://Resource Scripts/enemy_resource.gd" id="19_b43ew"]
@@ -23,6 +24,7 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="21_6nyeq"]
 [ext_resource type="Script" uid="uid://v1khg0weisnh" path="res://Assets/Scripts/music_trigger_zone.gd" id="22_6nyeq"]
 [ext_resource type="AudioStream" uid="uid://yghltbwlckgk" path="res://Assets/Audio/Music/Boss.wav" id="23_rp547"]
+[ext_resource type="PackedScene" uid="uid://d1k0tax3kgk3j" path="res://Assets/Scenes/mobile_con.tscn" id="24_4yyqq"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_m1vla"]
 polygon = PackedVector2Array(-7.4726563, -7.3109107, -5.8228493, -7.0521173, -4.8200245, -7.0844665, -3.4937096, -6.6962767, -2.6526318, -6.4698324, -1.5527592, -6.340436, -0.6469841, -6.890372, 0.097047806, -7.0844665, 1.0998707, -6.95507, 2.232092, -7.1168156, 3.2025661, -7.019768, 4.3994865, -6.8256736, 5.3052616, -7.019768, 6.3727856, -6.728626, 7.0521164, -6.728626, 7.569704, -6.56688, 8, -6.56688, 8, -2.0379972, 3.7201538, -1.9409494, 0.9381256, -2.2644415, -0.42053986, -2.5232344, -1.811554, -3.202567, -3.137869, -3.5907574, -4.043646, -4.1406927, -4.8847237, -4.6259303, -5.6611032, -5.078819, -6.4698324, -5.3052626, -6.8580227, -6.6962767)
@@ -554,6 +556,8 @@ position = Vector2(4509, -176)
 [node name="Clock8" parent="Clocks" unique_id=1352115452 instance=ExtResource("12_wbgto")]
 position = Vector2(3130, -53)
 
+[node name="MobileCon" parent="." unique_id=389725265 instance=ExtResource("24_4yyqq")]
+
 [node name="Player" parent="." unique_id=278113804 instance=ExtResource("2_t0x5v")]
 position = Vector2(-943, -33)
 collision_mask = 16
@@ -592,6 +596,39 @@ theme_override_colors/font_hover_color = Color(0.6117647, 0.9764706, 1, 1)
 theme_override_fonts/font = ExtResource("11_y65xe")
 theme_override_font_sizes/font_size = 30
 text = "Quitter"
+
+[node name="Volume" type="VBoxContainer" parent="PauseMenu" unique_id=1470011906]
+offset_left = 20.0
+offset_top = 56.0
+offset_right = 212.0
+offset_bottom = 194.0
+
+[node name="mas" type="Label" parent="PauseMenu/Volume" unique_id=88509328]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_y65xe")
+text = "Général"
+
+[node name="Master" parent="PauseMenu/Volume" unique_id=2045400123 instance=ExtResource("17_0w3bd")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="mus" type="Label" parent="PauseMenu/Volume" unique_id=613177599]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_y65xe")
+text = "Musique"
+
+[node name="Music" parent="PauseMenu/Volume" unique_id=1095423345 instance=ExtResource("17_0w3bd")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="sf" type="Label" parent="PauseMenu/Volume" unique_id=890381319]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_y65xe")
+text = "Effets sonores"
+
+[node name="Sfx" parent="PauseMenu/Volume" unique_id=416366251 instance=ExtResource("17_0w3bd")]
+layout_mode = 2
+bus_name = "SFX"
 
 [node name="MusicPlayer" type="Node" parent="." unique_id=398808440]
 script = ExtResource("13_5mnkj")
